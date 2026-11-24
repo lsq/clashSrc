@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, "../../..");
 const { readRendererCompositionSource } = require("../fixtures/renderer-composition-source");
 const { SERVICE_STATUS, createServiceModeManager: createManager } = require(path.join(
     root,
-    "app/main/src/electron/features/service-mode/service-mode-manager"
+    "app/main/dist/electron/features/service-mode/service-mode-manager"
 ));
 
 function createServiceModeManager(options) {

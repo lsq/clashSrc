@@ -2,8 +2,8 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createMenu } = require("../../main/src/electron/features/renderer-ui/components/menu");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createMenu } = require("../../main/dist/electron/features/renderer-ui/components/menu");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 test("nested context menu cancellation is quiet, disabled actions stay disabled and real failures are visible", async () => {
     const page = createMenu({ getLanguage: () => createTranslator(1) });

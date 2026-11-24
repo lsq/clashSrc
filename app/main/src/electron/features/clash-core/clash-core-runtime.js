@@ -20,6 +20,7 @@ function createClashCoreRuntime({
     }
 
     async function stop({ processHandle, lightweightMode, platform }) {
+        if (processHandle) processHandle.cfwStopping = true; // 新增
         killProcess(processHandle, platform);
         if (!lightweightMode) {
             await serviceApi.stop().catch(() => {});
@@ -119,17 +120,43 @@ function createClashCoreRuntime({
                 logger.info("clash core startup success!");
                 await onCoreReady();
             }
-            if (/ERR|level=error/i.test(text)) logger.error(startupErrorMessage);
+            // 修复日志有ERR字样的误报
+            if (!readyNotified && /ERR|level=error/i.test(text)) logger.error(startupErrorMessage);
         };
         processHandle.stdout.on("data", handleOutput);
         processHandle.stderr.on("data", handleOutput);
-        processHandle.on("exit", () => {});
+        // stop() 里 kill 之前：stopping = true;
+        processHandle.on("exit", (code, signal) => {
+            if (!readyNotified) {
+                logger.error(`${startupErrorMessage} (exit code=${code}, signal=${signal})`);
+            } else if (!processHandle.cfwStopping) {
+                logger.error(`clash core exited unexpectedly (code=${code}, signal=${signal})`);
+            }
+        });
         processHandle.on("error", () => logger.error(startupErrorMessage));
 
         if (logLevel !== "silent") {
             const stream = fs.createWriteStream(logPath, { flags: "a" });
-            processHandle.stdout.pipe(stream);
-            processHandle.stderr.pipe(stream);
+            // Never let file backpressure pause stdout/stderr: a paused pipe lets the
+            // OS pipe fill, which blocks the core's stdout write while it holds the
+            // logrus mutex and deadlocks the whole core. Drop chunks instead once the
+            // buffered backlog exceeds the cap.
+            const MAX_BUFFERED = 4 * 1024 * 1024; // 4MB
+            let droppedBytes = 0;
+            const writeLog = chunk => {
+                if (stream.writableLength > MAX_BUFFERED) {
+                    droppedBytes += chunk.length;
+                    return;
+                }
+                if (droppedBytes > 0) {
+                    stream.write(`\n[CFW] ${droppedBytes} bytes of core log dropped (disk too slow)\n`);
+                    droppedBytes = 0;
+                }
+                stream.write(chunk);
+            };
+            processHandle.stdout.on("data", writeLog);
+            processHandle.stderr.on("data", writeLog);
+            processHandle.on("exit", () => stream.end());
             onLogFile(logPath);
         }
         return { processHandle, serviceMode: false };

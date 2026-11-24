@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const net = require("node:net");
 const path = require("node:path");
-const getPort = require("../../main/node_modules/get-port");
+const getPort = require("../../main/node_modules/get-port").default;
 const { homePage } = require("../fixtures/home-page");
 const { assertRendererComposition } = require("../fixtures/assert-renderer-composition");
 

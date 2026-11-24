@@ -13,15 +13,15 @@ const {
     createWebSocketFactory
 } = require(path.join(
     root,
-    "app/main/src/electron/core/network/clash-clients"
+    "app/main/dist/electron/core/network/clash-clients"
 ));
 const { createClashApi } = require(path.join(
     root,
-    "app/main/src/electron/core/network/clash-api"
+    "app/main/dist/electron/core/network/clash-api"
 ));
 const { createClashServiceApi } = require(path.join(
     root,
-    "app/main/src/electron/core/network/clash-service-api"
+    "app/main/dist/electron/core/network/clash-service-api"
 ));
 
 assert.equal(parseControllerPort("127.0.0.1:9090"), 9090);

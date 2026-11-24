@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const mainPath = path.resolve(__dirname, "../../app/main/src/electron/main.js");
+const mainPath = path.resolve(__dirname, "../../app/main/dist/electron/main.js");
 let source = fs.readFileSync(mainPath, "utf8");
 
 const requireAnchor = '        const { buildStaticTrayMenu } = require("./features/tray/build-static-tray-menu");';

@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const rendererPath = path.resolve(__dirname, "../../app/main/src/electron/renderer.js");
+const rendererPath = path.resolve(__dirname, "../../app/main/dist/electron/renderer.js");
 let source = fs.readFileSync(rendererPath).toString("latin1");
 const before = '                    }), e._v(" " + Lg.skipCertVerify())])]), e._v(" "), "vmess" === e.proxyType ? t("div", {';
 const after = '                    }), e._v(" " + Lg.skipCertVerify())])]) : e._e(), e._v(" "), "vmess" === e.proxyType ? t("div", {';

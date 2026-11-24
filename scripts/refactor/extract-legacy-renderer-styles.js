@@ -4,8 +4,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../..");
-const rendererPath = path.join(root, "app/main/src/electron/renderer.js");
-const outputPath = path.join(root, "app/main/src/electron/styles.css");
+const rendererPath = path.join(root, "app/main/dist/electron/renderer.js");
+const outputPath = path.join(root, "app/main/dist/electron/styles.css");
 function extractLegacyStyles(source, evaluate = (expression, font) => Function("h", `return ${expression}`)(font)) {
 const pattern = /\.push\(\[e\.id,\s*(`(?:\\.|[^`\\])*`|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'),\s*""\]\)/gs;
 const blocks = [];

@@ -6,11 +6,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createGeneralPage } = require("../../main/src/electron/features/clash-core/general-page");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createGeneralPage } = require("../../main/dist/electron/features/clash-core/general-page");
 const { assertRendererComposition } = require("../fixtures/assert-renderer-composition");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { buildTunConfig } = require("../../main/src/electron/features/tun/build-tun-config");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { buildTunConfig } = require("../../main/dist/electron/features/tun/build-tun-config");
 
 Vue.use(Vuex);
 

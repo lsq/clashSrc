@@ -4,9 +4,9 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
 const { homePage } = require("../fixtures/home-page");
-const { trackProfileRefresh } = require("../../main/src/electron/core/network/profile-refresh-state");
-const { createToggle } = require("../../main/src/electron/features/renderer-ui/components/toggle");
-const { renderHomePage } = require("../../main/src/electron/features/home/page-render");
+const { trackProfileRefresh } = require("../../main/dist/electron/core/network/profile-refresh-state");
+const { createToggle } = require("../../main/dist/electron/features/renderer-ui/components/toggle");
+const { renderHomePage } = require("../../main/dist/electron/features/home/page-render");
 
 function deferred() {
     let resolve, reject;

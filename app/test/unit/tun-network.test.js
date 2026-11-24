@@ -5,15 +5,15 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const rendererPath = path.join(root, "app/main/src/electron/renderer.js");
+const rendererPath = path.join(root, "app/main/dist/electron/renderer.js");
 const { readRendererCompositionSource } = require("../fixtures/renderer-composition-source");
 const { buildTunConfig } = require(path.join(
     root,
-    "app/main/src/electron/features/tun/build-tun-config"
+    "app/main/dist/electron/features/tun/build-tun-config"
 ));
 const { createTunRuntime } = require(path.join(
     root,
-    "app/main/src/electron/features/tun/tun-runtime"
+    "app/main/dist/electron/features/tun/tun-runtime"
 ));
 
 const windowsConfig = buildTunConfig({ dnsHijacks: ["any:53"] }, "win32");
@@ -123,7 +123,7 @@ async function run() {
 
 const rendererSource = readRendererCompositionSource(root);
 const homePageOptionsSource = fs.readFileSync(path.join(
-    root, "app/main/src/electron/features/home/page-options.js"
+    root, "app/main/dist/electron/features/home/page-options.js"
 ), "utf8");
 assert.equal(/case 67:\s*const Lg = new Language/.test(rendererSource), false);
 assert.match(homePageOptionsSource, /return await refreshRendererProfile\(this, \{/);

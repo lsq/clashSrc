@@ -5,11 +5,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const mainPath = path.join(root, "app/main/src/electron/main.js");
-const featureRoot = path.join(root, "app/main/src/electron/features");
+const mainPath = path.join(root, "app/main/dist/electron/main.js");
+const featureRoot = path.join(root, "app/main/dist/electron/features");
 const { registerCoreIpc } = require(path.join(
     root,
-    "app/main/src/electron/entry/main/register-core-ipc"
+    "app/main/dist/electron/entry/main/register-core-ipc"
 ));
 const {
     registerDownloadIpc

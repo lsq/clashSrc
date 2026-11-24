@@ -493,7 +493,15 @@ function createProxiesPage({
                         return 0;
                     });
                     return { name: groupName, data: group };
-                }).sort((left, right) => globalOrder.indexOf(left.name) - globalOrder.indexOf(right.name));
+                }).sort((left, right) => {
+                        const leftIndex = globalOrder.indexOf(left.name);
+                        const rightIndex = globalOrder.indexOf(right.name);
+
+                        if (leftIndex === -1 && rightIndex === -1) return 0;
+                        if (leftIndex === -1) return 1;
+                        if (rightIndex === -1) return -1;
+                        return leftIndex - rightIndex;
+                });
 
                 this.proxies = groups.length > 500 ? Object.freeze(groups) : groups;
             }

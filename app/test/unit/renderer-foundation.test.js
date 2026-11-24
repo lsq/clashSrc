@@ -3,12 +3,12 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { removeEmoji } = require("../../main/src/electron/core/text/remove-emoji");
-const { getRendererTrayIcon } = require("../../main/src/electron/features/tray/renderer-tray-icon");
-const { createAutoLaunch, createLoginItemRuntime } = require("../../main/src/electron/features/application/set-auto-launch");
-const { createRendererCapabilities } = require("../../main/src/electron/entry/renderer/capabilities");
-const { createPlatform } = require("../../main/src/electron/core/runtime/platform");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { removeEmoji } = require("../../main/dist/electron/core/text/remove-emoji");
+const { getRendererTrayIcon } = require("../../main/dist/electron/features/tray/renderer-tray-icon");
+const { createAutoLaunch, createLoginItemRuntime } = require("../../main/dist/electron/features/application/set-auto-launch");
+const { createRendererCapabilities } = require("../../main/dist/electron/entry/renderer/capabilities");
+const { createPlatform } = require("../../main/dist/electron/core/runtime/platform");
 
 test("platform identities preserve supported packaged target comparisons", () => {
     for (const [platform, arch, key] of [
@@ -60,7 +60,7 @@ test("tray icons reflect every TUN/mixin/proxy combination and custom/mode prefe
     assert.equal(getRendererTrayIcon({ ...deps, settings: { iconSystemProxy: "custom.ico" } }), "/profile/custom.ico");
     assert.equal(getRendererTrayIcon({ ...deps, settings: { iconSystemProxy: "/custom.ico" } }), "/custom.ico");
     assert.equal(getRendererTrayIcon({ ...deps, settings: { useModeIcons: true }, mode: "global" }), "/assets/tray/win/on_global.png");
-    const assetRoot = path.join(__dirname, "../../main/src/electron/static/tray/win");
+    const assetRoot = path.join(__dirname, "../../main/dist/electron/static/tray/win");
     for (const name of [
         "tray_normal.ico", "tray_reverse.ico", "tray_purple.ico", "tray_light_blue.ico",
         "tray_pink.ico", "tray_green.ico", "tray_brown.ico", "tray_orange.ico",

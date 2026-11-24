@@ -3,7 +3,7 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const Cron = require("../../main/node_modules/unix-cron");
-const { matchesCron } = require("../../main/src/electron/core/time/cron-match");
+const { matchesCron } = require("../../main/dist/electron/core/time/cron-match");
 
 test("UNIX Sunday 7 works without changing range steps, other weekdays, months or saved expressions", () => {
     const sunday = new Date(2026, 9, 25), saturday = new Date(2026, 9, 24), monday = new Date(2026, 9, 26);

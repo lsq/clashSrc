@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createProvidersPage } = require("../../main/src/electron/features/providers/page");
+const { createProvidersPage } = require("../../main/dist/electron/features/providers/page");
 
 function deferred() {
     let resolve;

@@ -4,11 +4,11 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
 const {
     FEEDBACK_LINKS,
     createFeedbackPage
-} = require("../../main/src/electron/features/feedback/page");
+} = require("../../main/dist/electron/features/feedback/page");
 
 class Labels {
     imageIsOnWay() { return "loading"; }
@@ -92,13 +92,13 @@ test("feedback lazy image preserves loading, loaded and failed states", () => {
 });
 
 test("feedback page leaves vertical space above every title", () => {
-    const styles = fs.readFileSync(path.resolve(__dirname, "../../main/src/electron/styles.css"), "utf8");
+    const styles = fs.readFileSync(path.resolve(__dirname, "../../main/dist/electron/styles.css"), "utf8");
     assert.match(styles, /\.title\[data-v-4a737543\]\s*\{[^}]*margin-top:\s*0\.618em;/);
 });
 
 test("disabled advertisements show a muted explanation and risk notice without mounting cached images", () => {
     const Vue = require("../../main/node_modules/vue");
-    const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+    const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
     const nodes = node => !node ? [] : [node, ...(node.children || node.componentOptions?.children || []).flatMap(nodes)];
     for (const locale of [0, 1]) {
         const labels = createTranslator(locale);

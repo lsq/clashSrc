@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const electronRoot = path.resolve(__dirname, "../../main/src/electron");
+const electronRoot = path.resolve(__dirname, "../../main/dist/electron");
 
 function assertRendererComposition(factoryName, legacyOwners = []) {
     const entry = fs.readFileSync(path.join(electronRoot, "renderer.js"), "utf8");

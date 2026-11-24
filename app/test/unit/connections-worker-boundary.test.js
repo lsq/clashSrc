@@ -8,7 +8,7 @@ const vm = require("node:vm");
 const { createRequire } = require("node:module");
 
 test("Connections worker ignores foreign origins and malformed envelopes without mutating its model", () => {
-    const file = path.resolve(__dirname, "../../main/src/electron/entry/worker/connections.js");
+    const file = path.resolve(__dirname, "../../main/dist/electron/entry/worker/connections.js");
     const responses = [];
     const self = { postMessage: data => responses.push(data) };
     vm.runInNewContext(fs.readFileSync(file, "utf8"), { self, require: createRequire(file) });

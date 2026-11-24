@@ -7,7 +7,7 @@ const path = require("node:path");
 const os = require("node:os");
 const { EventEmitter } = require("node:events");
 const yaml = require("../../main/node_modules/yaml");
-const { registerExternalEditorIpc, splitEditorCommand, resolveEditorLaunch } = require("../../main/src/electron/features/settings/register-external-editor-ipc");
+const { registerExternalEditorIpc, splitEditorCommand, resolveEditorLaunch } = require("../../main/dist/electron/features/settings/register-external-editor-ipc");
 
 test("editor arguments preserve quoted paths without interpreting shell operators", () => {
     assert.deepEqual(splitEditorCommand('"C:\\Program Files\\Editor\\editor.exe" --wait "two words"'), ["C:\\Program Files\\Editor\\editor.exe", "--wait", "two words"]);

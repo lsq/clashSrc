@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
-const { createTunClient } = require("../../main/src/electron/core/native/tun-client");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
+const { createTunClient } = require("../../main/dist/electron/core/native/tun-client");
 
 test("TAP settings reject shell fragments and regex syntax before any native operation", () => {
     for (const field of ["ip", "subnet", "gateway"]) {

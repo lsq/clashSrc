@@ -3,19 +3,19 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 const root = path.resolve(__dirname, "../../..");
-const mainPath = path.join(root, "app/main/src/electron/main.js");
-const preloadPath = path.join(root, "app/main/src/electron/preload.js");
-const indexPath = path.join(root, "app/main/src/electron/index.html");
-const preloadLoaderPath = path.join(root, "app/main/src/electron/entry/main/load-sandboxed-renderer.js");
+const mainPath = path.join(root, "app/main/dist/electron/main.js");
+const preloadPath = path.join(root, "app/main/dist/electron/preload.js");
+const indexPath = path.join(root, "app/main/dist/electron/index.html");
+const preloadLoaderPath = path.join(root, "app/main/dist/electron/entry/main/load-sandboxed-renderer.js");
 const {
     createMainWindow
-} = require(path.join(root, "app/main/src/electron/features/window/create-main-window"));
+} = require(path.join(root, "app/main/dist/electron/features/window/create-main-window"));
 const {
     createShowMainWindow
-} = require(path.join(root, "app/main/src/electron/features/window/show-main-window"));
+} = require(path.join(root, "app/main/dist/electron/features/window/show-main-window"));
 
 async function main() {
     const calls = [];

@@ -5,10 +5,10 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const rendererPath = path.join(root, "app/main/src/electron/renderer.js");
+const rendererPath = path.join(root, "app/main/dist/electron/renderer.js");
 const { createSystemProxyRuntime } = require(path.join(
     root,
-    "app/main/src/electron/features/network/system-proxy-runtime"
+    "app/main/dist/electron/features/network/system-proxy-runtime"
 ));
 
 const calls = [];

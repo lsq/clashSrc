@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const { spawnSync } = require("node:child_process");
-const release = require("../../app/main/src/electron/core/release/release-info");
+const release = require("../../app/main/dist/electron/core/release/release-info");
 const { createTarGz, createDeb } = require("./linux-packages");
 const { synchronizeRelease } = require("../../scripts/build/sync-release");
 

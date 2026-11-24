@@ -8,11 +8,11 @@ const Vuex = require("../../main/node_modules/vuex");
 const yaml = require("../../main/node_modules/yaml");
 const { homePage } = require("../fixtures/home-page");
 const { buildStore } = require("../fixtures/renderer-store");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createGeneralPage } = require("../../main/src/electron/features/clash-core/general-page");
-const { createGeneralPageWorkflow } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createGeneralPage } = require("../../main/dist/electron/features/clash-core/general-page");
+const { createGeneralPageWorkflow } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 const nodes = node => node ? [node, ...(node.children || node.componentOptions?.children || []).flatMap(nodes)] : [];
 const labels = createTranslator(1);

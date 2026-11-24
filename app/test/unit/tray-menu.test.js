@@ -5,16 +5,16 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const mainPath = path.join(root, "app/main/src/electron/main.js");
+const mainPath = path.join(root, "app/main/dist/electron/main.js");
 const {
     buildStaticTrayMenu
-} = require(path.join(root, "app/main/src/electron/features/tray/build-static-tray-menu"));
+} = require(path.join(root, "app/main/dist/electron/features/tray/build-static-tray-menu"));
 const {
     createContextMenuBuilder
-} = require(path.join(root, "app/main/src/electron/features/tray/build-context-menu"));
+} = require(path.join(root, "app/main/dist/electron/features/tray/build-context-menu"));
 const { createClashApi } = require(path.join(
     root,
-    "app/main/src/electron/core/network/clash-api"
+    "app/main/dist/electron/core/network/clash-api"
 ));
 
 const calls = [];

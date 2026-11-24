@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../..");
-const rendererPath = path.join(root, "app/main/src/electron/renderer.js");
+const rendererPath = path.join(root, "app/main/dist/electron/renderer.js");
 const original = fs.readFileSync(rendererPath, "utf8");
 const newline = original.includes("\r\n") ? "\r\n" : "\n";
 let source = original.replace(/\r\n/g, "\n");

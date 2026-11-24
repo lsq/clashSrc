@@ -4,7 +4,7 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { registerSpeedIndicator } = require("../../main/src/electron/features/tray/register-speed-indicator");
+const { registerSpeedIndicator } = require("../../main/dist/electron/features/tray/register-speed-indicator");
 
 test("speed indicator window uses an isolated channel-specific preload", () => {
     let listener;
@@ -56,7 +56,7 @@ test("speed indicator window uses an isolated channel-specific preload", () => {
     assert.match(writtenHtml, /Content-Security-Policy/);
     assert.match(writtenHtml, /id="click-target"/);
 
-    const preload = fs.readFileSync(path.join(__dirname, "../../main/src/electron/entry/preload/speed-indicator.js"), "utf8");
+    const preload = fs.readFileSync(path.join(__dirname, "../../main/dist/electron/entry/preload/speed-indicator.js"), "utf8");
     assert.match(preload, /ipcRenderer\.on\("speed-update-win"/);
     assert.match(preload, /ipcRenderer\.send\("enhanced-tray-click"\)/);
     assert.doesNotMatch(preload, /contextBridge|exposeInMainWorld/);

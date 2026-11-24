@@ -23,11 +23,14 @@ function mergeSettings(settings = {}) {
         tapAllowMulticast: settings.tapAllowMulticast === true,
         showTrayProxyDelayIndicator:
             settings.showTrayProxyDelayIndicator !== false,
+        trayProxiesStyle: settings.trayProxiesStyle ?? 2,   // 2 = hidden，默认不显示代理组
         checkForUpdates: settings.checkForUpdates !== false,
         actionScriptsEnabled: settings.actionScriptsEnabled !== false,
         disableLoadingAdsLink: settings.disableLoadingAdsLink !== false,
         allowRemoteProfileParsers: settings.allowRemoteProfileParsers === true,
         allowHttpExternalLinks: settings.allowHttpExternalLinks === true,
+        skipServiceUpdateCheck: settings.skipServiceUpdateCheck === true,   // 新增，默认 false
+        useSystemMihomo: settings.useSystemMihomo === true,   // 新增，默认 false = 用包内二进制
         proxyCore: normalizeCoreType(settings.proxyCore)
     };
 }

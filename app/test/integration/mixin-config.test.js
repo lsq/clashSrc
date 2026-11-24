@@ -7,9 +7,9 @@ const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 const yaml = require("../../main/node_modules/yaml");
-const { DEFAULT_MIXIN } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { prepareProfile } = require("../../main/src/electron/features/profiles/prepare-profile");
-const { buildTunConfig } = require("../../main/src/electron/features/tun/build-tun-config");
+const { DEFAULT_MIXIN } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { prepareProfile } = require("../../main/dist/electron/features/profiles/prepare-profile");
+const { buildTunConfig } = require("../../main/dist/electron/features/tun/build-tun-config");
 
 const root = path.resolve(__dirname, "../../..");
 const targets = {

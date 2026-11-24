@@ -1,8 +1,8 @@
 "use strict";
 
 const path = require("node:path");
-const { createContextMenuBuilder } = require("../../../main/src/electron/features/tray/build-context-menu");
-const { createTrayLifecycle } = require("../../../main/src/electron/features/tray/tray-lifecycle");
+const { createContextMenuBuilder } = require("../../../main/dist/electron/features/tray/build-context-menu");
+const { createTrayLifecycle } = require("../../../main/dist/electron/features/tray/tray-lifecycle");
 
 async function verifyTrayNodeMetadata({ Menu, nativeImage }) {
     const listeners = new Map(), state = { isReady: true, isShowDelayIcon: true, menuStyle: 1 };

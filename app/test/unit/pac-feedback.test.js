@@ -2,9 +2,9 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { pacPortPolicy } = require("../../main/src/electron/core/network/pac-port-policy");
-const { createPacFeedback } = require("../../main/src/electron/features/home/pac-feedback");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { pacPortPolicy } = require("../../main/dist/electron/core/network/pac-port-policy");
+const { createPacFeedback } = require("../../main/dist/electron/features/home/pac-feedback");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 test("only a nonempty invalid configured PAC port is a legacy error", () => {
     for (const value of [undefined, null, "", "  "]) assert.deepEqual(pacPortPolicy(value), { port: null, invalid: false });

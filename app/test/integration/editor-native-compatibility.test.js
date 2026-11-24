@@ -9,14 +9,14 @@ const { spawnSync } = require("node:child_process");
 const Vue = require("../../main/node_modules/vue");
 const draggable = require("../../main/node_modules/vuedraggable");
 const yaml = require("../../main/node_modules/yaml");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { createProfileEditor } = require("../../main/src/electron/features/profiles/profile-editor-page");
-const { buildProxyConfig } = require("../../main/src/electron/features/profiles/proxy-editor-config");
-const { parseRule, serializeRule } = require("../../main/src/electron/features/profiles/rule-syntax");
-const { replaceReferences, removeReferences } = require("../../main/src/electron/features/profiles/profile-references");
-const { builtinProxyTargets } = require("../../main/src/electron/core/clash-core/core-capabilities");
-const { resolveCoreBinaryPath } = require("../../main/src/electron/core/clash-core/core-selection");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { createProfileEditor } = require("../../main/dist/electron/features/profiles/profile-editor-page");
+const { buildProxyConfig } = require("../../main/dist/electron/features/profiles/proxy-editor-config");
+const { parseRule, serializeRule } = require("../../main/dist/electron/features/profiles/rule-syntax");
+const { replaceReferences, removeReferences } = require("../../main/dist/electron/features/profiles/profile-references");
+const { builtinProxyTargets } = require("../../main/dist/electron/core/clash-core/core-capabilities");
+const { resolveCoreBinaryPath } = require("../../main/dist/electron/core/clash-core/core-selection");
 
 const directories = { "win32:x64": "win_x64", "win32:arm64": "win32-arm64", "linux:x64": "linux-x64",
     "linux:arm64": "linux-arm64", "darwin:x64": "darwin-x64", "darwin:arm64": "darwin-arm64" };

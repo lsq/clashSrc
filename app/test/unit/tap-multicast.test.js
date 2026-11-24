@@ -4,10 +4,10 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const { EventEmitter } = require("node:events");
-const { createMulticastRoutes } = require("../../main/src/electron/features/tun/multicast-routes");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
-const { createTunClient } = require("../../main/src/electron/core/native/tun-client");
-const { createNativeAdminClient } = require("../../main/src/electron/core/native/native-admin-client");
+const { createMulticastRoutes } = require("../../main/dist/electron/features/tun/multicast-routes");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
+const { createTunClient } = require("../../main/dist/electron/core/native/tun-client");
+const { createNativeAdminClient } = require("../../main/dist/electron/core/native/native-admin-client");
 
 const lease = { changed: true, interfaceIndex: 19, originalMetric: 256, appliedMetric: 4096 };
 

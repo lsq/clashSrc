@@ -1,8 +1,8 @@
 "use strict";
 
-const { createTrayState } = require("../../../main/src/electron/features/tray/tray-state");
-const { buildStaticTrayMenu } = require("../../../main/src/electron/features/tray/build-static-tray-menu");
-const { createTrayProxyProgress } = require("../../../main/src/electron/features/tray/proxy-operation-progress");
+const { createTrayState } = require("../../../main/dist/electron/features/tray/tray-state");
+const { buildStaticTrayMenu } = require("../../../main/dist/electron/features/tray/build-static-tray-menu");
+const { createTrayProxyProgress } = require("../../../main/dist/electron/features/tray/proxy-operation-progress");
 
 function verifyTrayProgress({ Menu, nativeImage }) {
     const state = { ...createTrayState(), isReady: true, tunModeChecked: true };

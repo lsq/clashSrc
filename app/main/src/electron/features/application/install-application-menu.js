@@ -14,7 +14,7 @@ function installApplicationMenu({ Menu, app, shell, requestQuit }) {
                 { role: "unhide" },
                 { label: "Close", accelerator: "Command+W", click() {} },
                 { type: "separator" },
-                { label: "退出 Clash for Windows", accelerator: "Command+Q", click: requestQuit }
+                { label: "退出 Clash for Windows", accelerator: "CmdOrCtrl+Q", click: requestQuit }
             ]
         },
         { role: "editMenu" },

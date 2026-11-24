@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
-const { createClashServiceApi } = require("../../main/src/electron/core/network/clash-service-api");
-const { createServiceModeManager } = require("../../main/src/electron/features/service-mode/service-mode-manager");
+const { createClashServiceApi } = require("../../main/dist/electron/core/network/clash-service-api");
+const { createServiceModeManager } = require("../../main/dist/electron/features/service-mode/service-mode-manager");
 
 test("log redaction uses a backward-compatible header without blocking startup on a capability probe", async () => {
     const calls = [];

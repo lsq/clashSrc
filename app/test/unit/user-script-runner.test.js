@@ -7,7 +7,7 @@ const {
     PROFILE_SCRIPT,
     PROXY_SCRIPT,
     createUserScriptRunner
-} = require("../../main/src/electron/features/scripts/user-script-runner");
+} = require("../../main/dist/electron/features/scripts/user-script-runner");
 
 test("user script runner loads profile and proxy scripts with the established runtime context", async () => {
     const executions = [];

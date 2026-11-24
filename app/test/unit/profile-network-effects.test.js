@@ -2,7 +2,7 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { createProfileNetworkEffects } = require("../../main/src/electron/features/network/profile-network-effects");
+const { createProfileNetworkEffects } = require("../../main/dist/electron/features/network/profile-network-effects");
 
 const table = names => `Admin State    State          Type             Interface Name\r\n---------------------------------------------------------------------------\r\n${names.map(name => `Enabled        Disconnected   Dedicated        ${name}`).join("\r\n")}\r\n`;
 

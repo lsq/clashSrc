@@ -14,7 +14,7 @@ async function main() {
     const output = path.join(path.resolve(process.env.CFW_BUILD_ROOT || path.join(root, "app/build")), "generated/renderer");
     fs.mkdirSync(output, { recursive: true });
     const result = await esbuild.build({
-        entryPoints: [path.join(root, "app/main/src/electron/renderer.js")],
+        entryPoints: [path.join(root, "app/main/dist/electron/renderer.js")],
         bundle: true, platform: "browser", target: ["chrome120"], format: "iife",
         minify: true, write: false, metafile: true,
         define: { "process.env": "{}", global: "globalThis" },
@@ -27,7 +27,7 @@ async function main() {
     const content = result.outputFiles[0].contents;
     fs.writeFileSync(path.join(output, "renderer.js"), content);
     const worker = await esbuild.build({
-        entryPoints: [path.join(root, "app/main/src/electron/entry/worker/connections.js")],
+        entryPoints: [path.join(root, "app/main/dist/electron/entry/worker/connections.js")],
         bundle: true, platform: "browser", target: ["chrome120"], format: "iife", minify: true, write: false
     });
     const workerContent = worker.outputFiles[0].contents;

@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const fs = require("node:fs");
 const os = require("node:os");
-const { registerCoreLifecycleIpc } = require("../../main/src/electron/features/clash-core/register-core-lifecycle-ipc");
-const { createCoreLifecycleClient } = require("../../main/src/electron/core/native/core-lifecycle-client");
+const { registerCoreLifecycleIpc } = require("../../main/dist/electron/features/clash-core/register-core-lifecycle-ipc");
+const { createCoreLifecycleClient } = require("../../main/dist/electron/core/native/core-lifecycle-client");
 
 function harness(t, overrides = {}) {
     const home = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-core-ipc-"));

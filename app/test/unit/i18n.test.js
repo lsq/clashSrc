@@ -3,9 +3,9 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { createHash } = require("node:crypto");
-const { createTranslator, languageIndex, languageLocale, initialLanguageIndex, getSystemLanguage } = require("../../main/src/electron/core/i18n/language");
-const { createRendererLanguage } = require("../../main/src/electron/entry/renderer/language-runtime");
-const { createTrayState, registerTrayStateIpc } = require("../../main/src/electron/features/tray/tray-state");
+const { createTranslator, languageIndex, languageLocale, initialLanguageIndex, getSystemLanguage } = require("../../main/dist/electron/core/i18n/language");
+const { createRendererLanguage } = require("../../main/dist/electron/entry/renderer/language-runtime");
+const { createTrayState, registerTrayStateIpc } = require("../../main/dist/electron/features/tray/tray-state");
 
 test("unselected language follows the primary OS UI language with English as the unsupported fallback", () => {
     for (const locale of ["zh", "zh-CN", "zh-TW", "zh-Hans-CN", "ZH_hant_TW"]) {
@@ -31,7 +31,7 @@ test("i18n preserves migrated catalogs apart from reviewed additions and copy up
         "zh-CN": "16d6071946c5b48f3d11d77cfd2cd8115e71f4fa4827b63d4b1c8ad061cfe1d6",
         "en-US": "197485eb13322bf35d48cbcba405828e21b5d420ae2ca24385e30e2c88b79170"
     };
-    const chinese = require("../../main/src/electron/core/i18n/locales/zh-CN.json");
+    const chinese = require("../../main/dist/electron/core/i18n/locales/zh-CN.json");
     const renamedChineseMessages = {
         TAPdeviceManagement: "虚拟网卡设置管理",
         mixin: "混合配置",
@@ -85,7 +85,7 @@ test("i18n preserves migrated catalogs apart from reviewed additions and copy up
         "tapAdapter", "tapPermission", "tapPermissionDescribe", "tapMixinOnly", "tapDisable", "tapStatusUnknown", "tapNotInstalled", "tapDisabled", "tapRestricted", "tapEnabled", "tapEnabledDescribe", "tapMixinDescribe", "tapDisabledDescribe", "tapAuthorizationExample", "tapYamlAuthorization", "tapJsAuthorization"
     ]);
     for (const [locale, hash] of Object.entries(hashes)) {
-        const catalog = require(`../../main/src/electron/core/i18n/locales/${locale}.json`);
+        const catalog = require(`../../main/dist/electron/core/i18n/locales/${locale}.json`);
         // Preserve migration fingerprints across the reviewed Mixin naming update.
         const original = Object.fromEntries(Object.entries(catalog).filter(([key]) => !additionalMessages.has(key))
             .map(([key, value]) => [key, (locale === "zh-CN" ? renamedChineseMessages : clarifiedEnglishMessages)[key] ?? value]));

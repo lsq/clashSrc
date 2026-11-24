@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const {
     createNetworkSnapshot,
     createNetworkChangeMonitor
-} = require("../../main/src/electron/features/network/network-change-monitor");
+} = require("../../main/dist/electron/features/network/network-change-monitor");
 
 test("network snapshots are deterministic and contain only auditable interface data", () => {
     const interfaces = {

@@ -6,7 +6,7 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "../../..");
 const { createSudoPromptCompat } = require(path.join(
     root,
-    "app/main/src/electron/core/native/sudo-prompt-compat"
+    "app/main/dist/electron/core/native/sudo-prompt-compat"
 ));
 
 async function run() {

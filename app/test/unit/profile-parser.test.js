@@ -7,14 +7,14 @@ const os = require("node:os");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
 const lodash = require("../../main/node_modules/lodash");
-const releaseConfig = require("../../main/src/electron/core/release/release-config.json");
+const releaseConfig = require("../../main/dist/electron/core/release/release-config.json");
 const {
     createProfileParser,
     mergeProfileYaml,
     parseCommand,
     parseHeaderString,
     parseSubscriptionInfo
-} = require("../../main/src/electron/features/profiles/profile-parser");
+} = require("../../main/dist/electron/features/profiles/profile-parser");
 
 const mergeDependencies = {
     yaml,

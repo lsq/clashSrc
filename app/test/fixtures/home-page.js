@@ -4,8 +4,8 @@ const path = require("node:path");
 const Vuex = require("../../main/node_modules/vuex");
 const yaml = require("../../main/node_modules/yaml");
 const lodash = require("../../main/node_modules/lodash");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createHomePage } = require("../../main/src/electron/features/home/page");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createHomePage } = require("../../main/dist/electron/features/home/page");
 
 const EmptyComponent = { render: h => h("span") };
 const labels = new Proxy({}, { get: (_target, key) => () => String(key) });

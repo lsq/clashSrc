@@ -8,7 +8,7 @@ const esbuild = require("esbuild");
 
 test("browser time formatting supports both UI languages without Node locale loading or a global locale change", () => {
     const bundle = esbuild.buildSync({
-        entryPoints: [path.resolve(__dirname, "../../main/src/electron/core/i18n/moment.js")],
+        entryPoints: [path.resolve(__dirname, "../../main/dist/electron/core/i18n/moment.js")],
         bundle: true, platform: "browser", format: "iife", globalName: "dateTime", write: false
     });
     const browser = {};

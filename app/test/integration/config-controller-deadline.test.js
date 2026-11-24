@@ -8,12 +8,12 @@ const yaml = require("../../main/node_modules/yaml");
 const axios = require("../../main/node_modules/axios/dist/node/axios.cjs");
 const requireFromString = require("../../main/node_modules/require-from-string");
 const { homePage } = require("../fixtures/home-page");
-const { createAxiosClient } = require("../../main/src/electron/core/network/clash-clients");
-const { createClashApi } = require("../../main/src/electron/core/network/clash-api");
-const { createClashApiClient } = require("../../main/src/electron/core/native/clash-api-client");
-const { registerClashApiIpc } = require("../../main/src/electron/entry/main/register-clash-api-ipc");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createAxiosClient } = require("../../main/dist/electron/core/network/clash-clients");
+const { createClashApi } = require("../../main/dist/electron/core/network/clash-api");
+const { createClashApiClient } = require("../../main/dist/electron/core/native/clash-api-client");
+const { registerClashApiIpc } = require("../../main/dist/electron/entry/main/register-clash-api-ipc");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 async function checkToggleDeadline(t, scenario) {
     let enabled = false, entered;

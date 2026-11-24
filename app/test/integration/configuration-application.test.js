@@ -7,7 +7,7 @@ const os = require("node:os");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
 const { homePage } = require("../fixtures/home-page");
-const { createRendererConfiguration } = require("../../main/src/electron/entry/renderer/configuration");
+const { createRendererConfiguration } = require("../../main/dist/electron/entry/renderer/configuration");
 const { buildStore } = require("../fixtures/renderer-store");
 
 test("Application: production startup adapters initialize, load, and preserve a manual mixed port", async t => {

@@ -5,9 +5,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const featureRoot = path.join(root, "app/main/src/electron/features");
-const coreRoot = path.join(root, "app/main/src/electron/core");
-const mainPath = path.join(root, "app/main/src/electron/main.js");
+const featureRoot = path.join(root, "app/main/dist/electron/features");
+const coreRoot = path.join(root, "app/main/dist/electron/core");
+const mainPath = path.join(root, "app/main/dist/electron/main.js");
 const {
     registerWindowControlIpc
 } = require(path.join(featureRoot, "window/register-window-control-ipc"));
@@ -41,7 +41,7 @@ const {
 } = require(path.join(coreRoot, "network/clash-client-registry"));
 const {
     registerClashClientInfo
-} = require(path.join(root, "app/main/src/electron/entry/main/register-clash-client-info"));
+} = require(path.join(root, "app/main/dist/electron/entry/main/register-clash-client-info"));
 const {
     registerWlanStatus
 } = require(path.join(featureRoot, "network/register-wlan-status"));

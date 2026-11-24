@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const os = require("node:os");
-const { registerApplicationLogIpc } = require("../../main/src/electron/features/logs/register-application-log-ipc");
+const { registerApplicationLogIpc } = require("../../main/dist/electron/features/logs/register-application-log-ipc");
 
 function harness(t, filesystem = fs) {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-app-log-"));

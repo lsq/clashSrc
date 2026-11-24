@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const { readBoundedText } = require("../../main/src/electron/core/storage/read-bounded-text");
+const { readBoundedText } = require("../../main/dist/electron/core/storage/read-bounded-text");
 
 test("bounded text reads reject files that grow after descriptor validation and close the descriptor", t => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-bounded-text-"));

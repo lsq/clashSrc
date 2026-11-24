@@ -5,11 +5,11 @@ const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
 const yaml = require("../../main/node_modules/yaml");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createGeneralPage } = require("../../main/src/electron/features/clash-core/general-page");
-const { buildTunConfig } = require("../../main/src/electron/features/tun/build-tun-config");
-const { createProfileApplication } = require("../../main/src/electron/features/profiles/profile-application");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createGeneralPage } = require("../../main/dist/electron/features/clash-core/general-page");
+const { buildTunConfig } = require("../../main/dist/electron/features/tun/build-tun-config");
+const { createProfileApplication } = require("../../main/dist/electron/features/profiles/profile-application");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 Vue.use(Vuex);
 function view(saved, core = "mihomo", language = 1) {

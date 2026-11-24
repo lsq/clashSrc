@@ -96,18 +96,7 @@ function createFeedbackPage({
             }
         },
         beforeRouteEnter(_to, _from, next) {
-            next(async vm => {
-                if (vm.settings.disableLoadingAdsLink !== false) { vm.adImages = []; return; }
-                vm.adImages = cache.get(keys.AD_IMAGES) || [];
-                vm.adLoadFailed = false;
-                try {
-                    const response = await publicContent.getAds();
-                    if (vm.settings.disableLoadingAdsLink === false && response.status === 200 && Array.isArray(response.data.feedback)) {
-                        cache.put(keys.AD_IMAGES, response.data.feedback);
-                        vm.adImages = response.data.feedback;
-                    } else if (vm.settings.disableLoadingAdsLink === false) vm.adLoadFailed = true;
-                } catch (_error) { vm.adLoadFailed = true; }
-            });
+            next(async vm => { vm.adImages = []; });
         }
     };
     return defineComponent(component, function renderFeedbackPage(createElement) {
@@ -156,31 +145,31 @@ function createFeedbackPage({
                 createElement("div", { staticClass: "title" }, [labels.credits()]),
                 createElement("div", { staticClass: "flex flex-wrap gap-x-[20px]" }, credits.map(([text, index]) => link(text, index)))
             ]),
-            createElement("div", { staticClass: "title" }, [labels.other()]),
-            createElement("div", { staticClass: "section ad-section" }, [
-                createElement("div", {
-                    staticClass: linkClass,
-                    on: { click: () => { this.isShowAds = true; } }
-                }, [labels.advertisementOriginal()])
-            ]),
+            // createElement("div", { staticClass: "title" }, [labels.other()]),
+            // createElement("div", { staticClass: "section ad-section" }, [
+            //     createElement("div", {
+            //         staticClass: linkClass,
+            //         on: { click: () => { this.isShowAds = true; } }
+            //     }, [labels.advertisementOriginal()])
+            // ]),
             slogan(),
             this.isShowAds ? overlay(() => { this.isShowAds = false; }, [
-                createElement("div", { staticClass: "section ad-section" }, [
-                    createElement("div", { staticClass: "title" }, [labels.advertisementOriginal()]),
-                    this.settings.disableLoadingAdsLink !== false
-                        ? createElement("p", { staticClass: "text-sm opacity-60", style: { lineHeight: "1.6", margin: "12px 0" } }, [labels.advertisementsDisabled()])
-                        : !this.adImages.length
-                            ? createElement("p", { staticClass: "text-sm opacity-60", style: { lineHeight: "1.6", margin: "12px 0" } }, [this.adLoadFailed ? labels.advertisementsFailed() : labels.noAdvertisements()])
-                            : createElement("div", { staticClass: "ad-img-list" }, this.adImages.map((image, index) =>
-                        createElement("div", { key: index, staticClass: "ad-img" }, [
-                            createElement("lazy-image-view", {
-                                attrs: { clickalbe: image.click, src: image.img },
-                                on: { click: () => this.adClick(index) }
-                            })
-                        ])
-                    )),
-                    createElement("p", { staticClass: "text-sm opacity-60", style: { lineHeight: "1.6", margin: "12px 0 0" } }, [labels.advertisementRisk()])
-                ])
+                // createElement("div", { staticClass: "section ad-section" }, [
+                //     createElement("div", { staticClass: "title" }, [labels.advertisementOriginal()]),
+                //     this.settings.disableLoadingAdsLink !== false
+                //         ? createElement("p", { staticClass: "text-sm opacity-60", style: { lineHeight: "1.6", margin: "12px 0" } }, [labels.advertisementsDisabled()])
+                //         : !this.adImages.length
+                //             ? createElement("p", { staticClass: "text-sm opacity-60", style: { lineHeight: "1.6", margin: "12px 0" } }, [this.adLoadFailed ? labels.advertisementsFailed() : labels.noAdvertisements()])
+                //             : createElement("div", { staticClass: "ad-img-list" }, this.adImages.map((image, index) =>
+                //         createElement("div", { key: index, staticClass: "ad-img" }, [
+                //             createElement("lazy-image-view", {
+                //                 attrs: { clickalbe: image.click, src: image.img },
+                //                 on: { click: () => this.adClick(index) }
+                //             })
+                //         ])
+                //     )),
+                //     createElement("p", { staticClass: "text-sm opacity-60", style: { lineHeight: "1.6", margin: "12px 0 0" } }, [labels.advertisementRisk()])
+                // ])
             ], this.settings.disableLoadingAdsLink !== false || !this.adImages.length) : null,
             slogan(),
             this.isShowDisclaimerStatement

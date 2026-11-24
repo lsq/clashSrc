@@ -2,9 +2,9 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { settingsElement, guardSettingsMethods, isProxySetting } = require("../../main/src/electron/features/settings/proxy-operation-guards");
-const { createSettingsProxy } = require("../../main/src/electron/features/settings/settings-proxy");
-const { createGlobalMixin } = require("../../main/src/electron/entry/renderer/global-mixin");
+const { settingsElement, guardSettingsMethods, isProxySetting } = require("../../main/dist/electron/features/settings/proxy-operation-guards");
+const { createSettingsProxy } = require("../../main/dist/electron/features/settings/settings-proxy");
+const { createGlobalMixin } = require("../../main/dist/electron/entry/renderer/global-mixin");
 const Vuex = require("../../main/node_modules/vuex");
 
 test("busy settings disable only network controls and reject stale model callbacks", () => {

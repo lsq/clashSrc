@@ -2,7 +2,7 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { persistSelection } = require("../../main/src/electron/features/profiles/persist-selection");
+const { persistSelection } = require("../../main/dist/electron/features/profiles/persist-selection");
 
 test("selection persistence discards older core snapshots across fresh callback closures", async () => {
     const pending = [];

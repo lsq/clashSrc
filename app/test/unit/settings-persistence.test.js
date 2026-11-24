@@ -7,11 +7,11 @@ const os = require("node:os");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
 const cloneDeep = require("../../main/node_modules/lodash/cloneDeep");
-const { createSettingsRepository } = require("../../main/src/electron/features/settings/settings-repository");
-const { createProfilesRepository } = require("../../main/src/electron/features/profiles/profiles-repository");
-const { createSettingsProxy } = require("../../main/src/electron/features/settings/settings-proxy");
-const { updateYamlValue } = require("../../main/src/electron/core/storage/yaml-file");
-const { createJsonCache } = require("../../main/src/electron/core/storage/json-cache");
+const { createSettingsRepository } = require("../../main/dist/electron/features/settings/settings-repository");
+const { createProfilesRepository } = require("../../main/dist/electron/features/profiles/profiles-repository");
+const { createSettingsProxy } = require("../../main/dist/electron/features/settings/settings-proxy");
+const { updateYamlValue } = require("../../main/dist/electron/core/storage/yaml-file");
+const { createJsonCache } = require("../../main/dist/electron/core/storage/json-cache");
 
 test("atomic settings writes preserve existing data on rename failure and remove temporary files", () => {
     const home = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-settings-"));

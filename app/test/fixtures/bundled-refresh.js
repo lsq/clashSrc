@@ -3,7 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const yaml = require("../../main/node_modules/yaml");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
 const { rendererLanguage } = require("./renderer-harness");
 const { homePage } = require("./home-page");
 function bundledRefresh(platform = process.platform, locale = 1, onProfileApplied) {

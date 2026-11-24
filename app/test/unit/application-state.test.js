@@ -3,11 +3,11 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
-const { createAppMutations } = require("../../main/src/electron/features/application-state/mutations");
-const { createAppGetters } = require("../../main/src/electron/features/application-state/getters");
-const { createAppActions } = require("../../main/src/electron/features/application-state/actions");
-const { persistSelection } = require("../../main/src/electron/features/profiles/persist-selection");
-const { createProfileNetworkEffects } = require("../../main/src/electron/features/network/profile-network-effects");
+const { createAppMutations } = require("../../main/dist/electron/features/application-state/mutations");
+const { createAppGetters } = require("../../main/dist/electron/features/application-state/getters");
+const { createAppActions } = require("../../main/dist/electron/features/application-state/actions");
+const { persistSelection } = require("../../main/dist/electron/features/profiles/persist-selection");
+const { createProfileNetworkEffects } = require("../../main/dist/electron/features/network/profile-network-effects");
 
 test("state transitions retain mode/status guards, immutable profile changes and counters", () => {
     const connectionStatus = { CONNECTED: Symbol(), DISCONNECTED: Symbol() };

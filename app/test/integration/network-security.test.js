@@ -12,8 +12,8 @@ const zlib = require("node:zlib");
 const axios = require("../../main/node_modules/axios/dist/node/axios.cjs");
 const yaml = require("../../main/node_modules/yaml");
 const { Console } = require("node:console");
-const { createProfileParser } = require("../../main/src/electron/features/profiles/profile-parser");
-const { createAxiosClient } = require("../../main/src/electron/core/network/clash-clients");
+const { createProfileParser } = require("../../main/dist/electron/features/profiles/profile-parser");
+const { createAxiosClient } = require("../../main/dist/electron/core/network/clash-clients");
 
 async function serve(t, handler) {
     const server = http.createServer(handler);
@@ -44,7 +44,7 @@ test("controller authentication stays on loopback when proxy environment variabl
     });
     // A child owns the hostile environment; the test never changes the user's proxy settings.
     const source = `
-        const { createAxiosClient } = require("./app/main/src/electron/core/network/clash-clients");
+        const { createAxiosClient } = require("./app/main/dist/electron/core/network/clash-clients");
         const axios = require("./app/main/node_modules/axios/dist/node/axios.cjs");
         const client = createAxiosClient({ axios, controllerPort: ${controllerPort},
             secret: require("node:crypto").randomBytes(32).toString("hex") });

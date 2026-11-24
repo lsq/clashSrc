@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const { registerProviderFileIpc } = require("../../main/src/electron/features/providers/register-provider-file-ipc");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { registerProviderFileIpc } = require("../../main/dist/electron/features/providers/register-provider-file-ipc");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 function harness(t, getLanguage) {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-provider-file-"));

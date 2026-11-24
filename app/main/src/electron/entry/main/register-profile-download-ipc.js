@@ -25,7 +25,7 @@ function registerProfileDownloadIpc({ ipcMain, app, getMainWindow, fs, path, yam
         if (!Number.isSafeInteger(request.id) || request.id < 1 || jobs.has(request.id) || jobs.size >= 4) throw new Error("Invalid profile download job");
         if (typeof request.home !== "string" || !homes.some(home => normalize(home) === normalize(path.resolve(request.home)))) throw new Error("Unsupported profile home");
         const url = new URL(request.url);
-        if (!["http:", "https:"].includes(url.protocol) || typeof request.headersString !== "string") throw new Error("Unsupported profile download request");
+        if (!["http:", "https:", "file:"].includes(url.protocol) || typeof request.headersString !== "string") throw new Error("Unsupported profile download request");
         const home = fs.realpathSync(request.home);
         localFile(home, "cfw-settings.yaml");
         const settings = createSettingsRepository({ fs, path, yaml }).load(home);

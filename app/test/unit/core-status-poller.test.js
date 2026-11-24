@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createCoreStatusPoller } = require("../../main/src/electron/features/home/core-status-poller");
+const { createCoreStatusPoller } = require("../../main/dist/electron/features/home/core-status-poller");
 
 function fixture() {
     const updates = [];

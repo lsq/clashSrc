@@ -7,7 +7,7 @@ const path = require("node:path");
 const os = require("node:os");
 const { EventEmitter } = require("node:events");
 const yaml = require("../../main/node_modules/yaml");
-const { registerUserProcessIpc } = require("../../main/src/electron/features/scripts/register-user-process-ipc");
+const { registerUserProcessIpc } = require("../../main/dist/electron/features/scripts/register-user-process-ipc");
 
 test("user process IPC starts only saved commands and shuts down only its owned handles", async t => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-process-ipc-"));

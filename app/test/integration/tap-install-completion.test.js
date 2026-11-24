@@ -3,9 +3,9 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const yaml = require("../../main/node_modules/yaml");
-const { refreshProfile, refreshTapAfterSetup } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { ensureMixinDefaults, DEFAULT_YAML_MIXIN } = require("../../main/src/electron/features/mixin/mixin-runtime");
-const { DEFAULT_MIXIN } = require("../../main/src/electron/features/clash-core/general-page-workflow");
+const { refreshProfile, refreshTapAfterSetup } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { ensureMixinDefaults, DEFAULT_YAML_MIXIN } = require("../../main/dist/electron/features/mixin/mixin-runtime");
+const { DEFAULT_MIXIN } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
 
 function fixture(settings = { legacyTapMode: "enabled" }) {
     const calls = [];

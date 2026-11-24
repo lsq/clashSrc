@@ -3,9 +3,9 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { EventEmitter } = require("node:events");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { registerDialogIpc } = require("../../main/src/electron/features/dialog/register-dialog-ipc");
-const { registerAppLifecycle } = require("../../main/src/electron/features/application/register-app-lifecycle");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { registerDialogIpc } = require("../../main/dist/electron/features/dialog/register-dialog-ipc");
+const { registerAppLifecycle } = require("../../main/dist/electron/features/application/register-app-lifecycle");
 
 test("native message boxes translate implicit OK using the current language and preserve explicit options", async () => {
     let language = 0, handler;

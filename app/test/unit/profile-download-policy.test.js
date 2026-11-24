@@ -3,7 +3,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const yaml = require("../../main/node_modules/yaml");
-const { DEFAULT_DOWNLOAD_POLICY, readDownloadExceptions, resolveDownloadPolicy } = require("../../main/src/electron/core/network/profile-download-policy");
+const { DEFAULT_DOWNLOAD_POLICY, readDownloadExceptions, resolveDownloadPolicy } = require("../../main/dist/electron/core/network/profile-download-policy");
 
 const url = "https://subscription.test/profile.yaml?account=example";
 const settingsFor = entry => ({ profileDownloadExceptionsText: yaml.stringify({ exceptions: [entry] }) });

@@ -2,8 +2,8 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const fixShellPath = require("../../main/src/electron/features/application/fix-shell-path");
-const { v4 } = require("../../main/src/electron/core/crypto/random-uuid");
+const fixShellPath = require("../../main/dist/electron/features/application/fix-shell-path");
+const { v4 } = require("../../main/dist/electron/core/crypto/random-uuid");
 
 test("runtime hardening keeps non-macOS PATH unchanged and uses the built-in UUID generator", () => {
     const before = process.env.PATH;

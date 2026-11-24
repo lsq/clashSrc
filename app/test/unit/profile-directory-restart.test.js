@@ -3,12 +3,12 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs"), os = require("node:os"), path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { createOperationActivity } = require("../../main/src/electron/core/native/operation-activity");
-const { createProfileDirectoryClient } = require("../../main/src/electron/core/native/profile-directory-client");
-const { createProfileDirectoryRestart } = require("../../main/src/electron/features/settings/profile-directory-restart");
-const { createSettingsRepository } = require("../../main/src/electron/features/settings/settings-repository");
-const { createSettingsPageOptions } = require("../../main/src/electron/features/settings/page-options");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createOperationActivity } = require("../../main/dist/electron/core/native/operation-activity");
+const { createProfileDirectoryClient } = require("../../main/dist/electron/core/native/profile-directory-client");
+const { createProfileDirectoryRestart } = require("../../main/dist/electron/features/settings/profile-directory-restart");
+const { createSettingsRepository } = require("../../main/dist/electron/features/settings/settings-repository");
+const { createSettingsPageOptions } = require("../../main/dist/electron/features/settings/page-options");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 test("failed relaunch restores the exact settings file and releases the write barrier", t => {
     const home = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-directory-restart-"));

@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
 const yaml = require("../../main/node_modules/yaml");
 const { homePage } = require("../fixtures/home-page");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
 
 test("a failed compatibility change restarts the previously accepted TAP policy before restoring the switch", async t => {
     const starts = []; let applies = 0, failProtected = false;

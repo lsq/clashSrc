@@ -3,14 +3,14 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const net = require("node:net");
-const getPort = require("../../main/node_modules/get-port");
+const getPort = require("../../main/node_modules/get-port").default;
 const {
     isTcpPortAvailable,
     findAvailableTcpPort,
     applyAndVerifyMixedPort,
     confirmMixedPortConflict,
     recoverWithRandomPort
-} = require("../../main/src/electron/core/network/mixed-port-recovery");
+} = require("../../main/dist/electron/core/network/mixed-port-recovery");
 
 test("TCP port checks reject an occupied port and random selection is rechecked", async t => {
     const server = net.createServer();

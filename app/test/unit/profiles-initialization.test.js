@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { createProfilesRepository } = require("../../main/src/electron/features/profiles/profiles-repository");
+const { createProfilesRepository } = require("../../main/dist/electron/features/profiles/profiles-repository");
 
 function fixture(t, fileSystem = fs) {
     const folder = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-initial-profiles-"));

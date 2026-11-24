@@ -4,7 +4,7 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const {
     createTrayIconController
-} = require("../../main/src/electron/features/tray/tray-icon-controller");
+} = require("../../main/dist/electron/features/tray/tray-icon-controller");
 
 test("tray icon controller loads fresh images, settles updates, and restores the latest icon", () => {
     const loaded = [], applied = [], timers = [];

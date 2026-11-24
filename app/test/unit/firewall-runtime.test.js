@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, "../../..");
 const { readRendererCompositionSource } = require("../fixtures/renderer-composition-source");
 const { createFirewallRuntime } = require(path.join(
     root,
-    "app/main/src/electron/features/network/firewall-runtime"
+    "app/main/dist/electron/features/network/firewall-runtime"
 ));
 
 const decode = command => Buffer.from(command.split("-EncodedCommand ")[1], "base64").toString("utf16le");
@@ -48,7 +48,7 @@ async function run() {
     const renderer = readRendererCompositionSource(root);
     const adminHost = fs.readFileSync(path.join(
         root,
-        "app/main/src/electron/entry/main/register-native-admin-ipc.js"
+        "app/main/dist/electron/entry/main/register-native-admin-ipc.js"
     ), "utf8");
     assert.match(renderer, /createNativeAdminClient/);
     assert.match(adminHost, /require\("\.\.\/\.\.\/features\/network\/firewall-runtime"\)/);

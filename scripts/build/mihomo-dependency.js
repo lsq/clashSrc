@@ -4,23 +4,23 @@ const crypto = require("node:crypto");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const { resolveCoreBinaryPath } = require("../../app/main/src/electron/core/clash-core/core-selection");
+const { resolveCoreBinaryPath } = require("../../app/main/dist/electron/core/clash-core/core-selection");
 const { downloadFile, extractBinary } = require("./mihomo-download");
 
 const repositoryRoot = path.resolve(__dirname, "../..");
 const manifestRelative = "app/clash_core/mihomo-core-manifest.json";
 const targets = Object.freeze({
-    "win-x64": { platform: "win32", arch: "x64", directory: "win_x64", asset: "windows-amd64-compatible", extension: "zip" },
+    "win-x64": { platform: "win32", arch: "x64", directory: "win_x64", asset: "windows-amd64-v3", extension: "zip" },
     "win-arm64": { platform: "win32", arch: "arm64", directory: "win32-arm64", asset: "windows-arm64", extension: "zip" },
-    "linux-x64": { platform: "linux", arch: "x64", directory: "linux-x64", asset: "linux-amd64-compatible", extension: "gz" },
+    "linux-x64": { platform: "linux", arch: "x64", directory: "linux-x64", asset: "linux-amd64-v3", extension: "gz" },
     "linux-arm64": { platform: "linux", arch: "arm64", directory: "linux-arm64", asset: "linux-arm64", extension: "gz" },
-    "mac-x64": { platform: "darwin", arch: "x64", directory: "darwin-x64", asset: "darwin-amd64-compatible", extension: "gz" },
+    "mac-x64": { platform: "darwin", arch: "x64", directory: "darwin-x64", asset: "darwin-amd64-v3", extension: "gz" },
     "mac-arm64": { platform: "darwin", arch: "arm64", directory: "darwin-arm64", asset: "darwin-arm64", extension: "gz" }
 });
 
 function validateVersion(version) {
     if (typeof version !== "string" || !/^\d+\.\d+\.\d+$/.test(version)) {
-        throw new Error("Expected an exact Mihomo version, for example 1.19.31");
+        throw new Error("Expected an exact Mihomo version, for example 1.19.34");
     }
     const components = version.split(".").map(component => Number(component));
     const canonical = components.join(".");
@@ -31,38 +31,44 @@ function validateVersion(version) {
     return canonical;
 }
 
-function targetSpec(name, version) {
+function targetPaths(name) {
     const target = targets[name];
     if (!target) throw new Error(`Unsupported Mihomo target: ${name}`);
-    version = validateVersion(version);
     const filesPath = `clash_core/${target.directory}/static/files`;
     const output = resolveCoreBinaryPath({ path: path.posix, filesPath, ...target, coreType: "mihomo" });
     const legacy = resolveCoreBinaryPath({ path: path.posix, filesPath, ...target, coreType: "clash" });
-    const asset = `mihomo-${target.asset}-v${version}.${target.extension}`;
     return {
-        name, ...target, asset, output, legacy,
-        source: `https://github.com/MetaCubeX/mihomo/releases/download/v${version}/${asset}`,
+        name, ...target, output, legacy,
         notice: `${filesPath}/MIHOMO_NOTICE.txt`,
         serviceManifest: `${path.posix.dirname(output)}/service/core-hashes.json`
     };
 }
 
+function targetSpec(name, version) {
+    const spec = targetPaths(name);
+    version = validateVersion(version);
+    spec.asset = `mihomo-${spec.asset}-v${version}.${spec.extension}`;
+    spec.source = `https://github.com/MetaCubeX/mihomo/releases/download/v${version}/${spec.asset}`;
+    return spec;
+}
+
 function readManifest(root = repositoryRoot) {
     const manifest = JSON.parse(fs.readFileSync(path.join(root, manifestRelative), "utf8").replace(/^\uFEFF/, ""));
-    validateVersion(manifest.version);
+    // console.log(manifest)
     if (manifest.project !== "MetaCubeX/mihomo"
-        || manifest.release !== `https://github.com/MetaCubeX/mihomo/releases/tag/v${manifest.version}`
         || !Array.isArray(manifest.targets) || manifest.targets.length !== Object.keys(targets).length) {
         throw new Error("Invalid Mihomo dependency manifest");
     }
     const remaining = new Map(manifest.targets.map(target => [target.output, target]));
     for (const name of Object.keys(targets)) {
-        const spec = targetSpec(name, manifest.version);
-        const entry = remaining.get(spec.output);
-        if (!entry || entry.asset !== spec.asset || entry.source !== spec.source || !/^[a-f0-9]{64}$/.test(entry.sha256)) {
+        const paths = targetPaths(name);
+        const entry = remaining.get(paths.output);
+        if (!entry || entry.target !== name) throw new Error(`Invalid Mihomo dependency lock for ${name}`);
+        const spec = targetSpec(name, entry.version);
+        if (entry.asset !== spec.asset || entry.source !== spec.source || !/^[a-f0-9]{64}$/.test(entry.sha256)) {
             throw new Error(`Invalid Mihomo dependency lock for ${name}`);
         }
-        remaining.delete(spec.output);
+        remaining.delete(paths.output);
     }
     if (remaining.size) throw new Error("Duplicate Mihomo dependency targets");
     return manifest;
@@ -207,8 +213,10 @@ async function prepareMihomo({ root = repositoryRoot, targetNames = Object.keys(
         const manifest = readManifest(root);
         if (!targetNames.length || new Set(targetNames).size !== targetNames.length) throw new Error("Expected unique Mihomo targets");
         const selected = targetNames.map(name => {
-            const spec = targetSpec(name, manifest.version);
-            const entry = manifest.targets.find(item => item.output === spec.output);
+            const paths = targetPaths(name);
+            const entry = manifest.targets.find(item => item.output === paths.output);
+            if (!entry) throw new Error(`Mihomo target ${name} is not locked in the manifest; run mihomo:update for it first`);
+            const spec = targetSpec(name, entry.version);
             verifyServiceManifest(root, spec, entry.sha256);
             return { spec, entry };
         });
@@ -224,8 +232,8 @@ async function prepareMihomo({ root = repositoryRoot, targetNames = Object.keys(
             }
             let source = cache;
             if (!matches(cache, entry.sha256)) {
-                if (offline) throw new Error(`Mihomo ${manifest.version} (${spec.name}) is missing from the verified local cache; prepare it online first`);
-                log(`Downloading Mihomo ${manifest.version} for ${spec.name}...`);
+                if (offline) throw new Error(`Mihomo ${entry.version} (${spec.name}) is missing from the verified local cache; prepare it online first`);
+                log(`Downloading Mihomo ${entry.version} for ${spec.name}...`);
                 const archive = path.join(work, spec.asset);
                 source = path.join(work, spec.name);
                 await download(spec.source, archive);
@@ -243,33 +251,55 @@ async function prepareMihomo({ root = repositoryRoot, targetNames = Object.keys(
 }
 
 async function updateMihomo(version, { root = repositoryRoot,
+    targetNames = Object.keys(targets), localArchives = new Map(), localBinaries = new Map(),
     cacheRoot = process.env.CFW_MIHOMO_CACHE || path.join(root, "app/build/dependencies/mihomo"),
     download = downloadFile, extract = extractBinary, log = console.log } = {}) {
     version = validateVersion(version);
+    if (!targetNames.length || new Set(targetNames).size !== targetNames.length) throw new Error("Expected unique Mihomo targets");
+    for (const name of targetNames) targetPaths(name);
+    for (const [kind, map] of [["archive", localArchives], ["binary", localBinaries]]) {
+        for (const name of map.keys()) {
+            if (!targetNames.includes(name)) throw new Error(`Local ${kind} supplied for unselected Mihomo target: ${name}`);
+            if (!fs.existsSync(map.get(name))) throw new Error(`Missing local Mihomo ${kind}: ${map.get(name)}`);
+        }
+    }
+    for (const name of targetNames) {
+        if (localArchives.has(name) && localBinaries.has(name)) {
+            throw new Error(`Specify either --archive or --binary for ${name}, not both`);
+        }
+    }
     return withLock(root, async work => {
         const previous = readManifest(root);
-        for (const name of Object.keys(targets)) {
-            const spec = targetSpec(name, previous.version);
+        const selected = new Set(targetNames);
+        const previousEntries = new Map(previous.targets.map(item => [item.target, item]));
+        for (const name of targetNames) {
+            const entry = previousEntries.get(name);
             // A Mihomo upgrade must not authorize changed legacy cores or system helpers.
-            verifyServiceManifest(root, spec, previous.targets.find(item => item.output === spec.output).sha256);
+            if (entry) verifyServiceManifest(root, targetSpec(name, entry.version), entry.sha256);
         }
         const outputs = new Map();
-        const manifest = { project: "MetaCubeX/mihomo", version,
-            release: `https://github.com/MetaCubeX/mihomo/releases/tag/v${version}`, targets: [] };
-        for (const name of Object.keys(targets)) {
+        const resolved = new Map();
+        for (const name of targetNames) {
             const spec = targetSpec(name, version);
             const archive = path.join(work, spec.asset);
             const source = path.join(work, name);
             log(`Resolving Mihomo ${version} for ${name}...`);
-            await download(spec.source, archive);
-            await extract(archive, source, spec);
+            if (localBinaries.has(name)) {
+                fs.copyFileSync(localBinaries.get(name), source);
+            } else {
+                const local = localArchives.get(name);
+                if (local) fs.copyFileSync(local, archive);
+                else await download(spec.source, archive);
+                await extract(archive, source, spec);
+            }
             verifyBinary(source, spec);
             const digest = sha256(source);
+            const previousEntry = previousEntries.get(name);
             // Re-resolving an existing version must never silently replace its trusted hash.
-            if (previous.version === version && previous.targets.find(item => item.output === spec.output).sha256 !== digest) {
+            if (previousEntry && previousEntry.version === version && previousEntry.sha256 !== digest) {
                 throw new Error(`Mihomo SHA-256 mismatch for already locked version ${version} (${name})`);
             }
-            manifest.targets.push({ asset: spec.asset, output: spec.output, source: spec.source, sha256: digest });
+            resolved.set(name, { target: name, version, asset: spec.asset, output: spec.output, source: spec.source, sha256: digest });
             outputs.set(path.join(cacheRoot, digest, path.posix.basename(spec.output)), { source });
             outputs.set(path.join(root, "app", spec.output), { source });
             outputs.set(path.join(root, "app", spec.notice), { text: noticeText(version) });
@@ -277,11 +307,13 @@ async function updateMihomo(version, { root = repositoryRoot,
                 text: `${JSON.stringify(serviceManifest(root, spec, digest), null, 2)}\n`
             });
         }
+        const manifest = { project: "MetaCubeX/mihomo",
+            targets: Object.keys(targets).map(name => resolved.get(name) || previousEntries.get(name)) };
         outputs.set(path.join(root, manifestRelative), { text: `${JSON.stringify(manifest, null, 2)}\n` });
         replaceFiles(outputs, work);
         return manifest;
     });
 }
 
-module.exports = { targets, targetSpec, readManifest, sha256, matches, verifyBinary, serviceManifest,
+module.exports = { targets, targetPaths, targetSpec, readManifest, sha256, matches, verifyBinary, serviceManifest,
     verifyServiceManifest, prepareMihomo, updateMihomo };

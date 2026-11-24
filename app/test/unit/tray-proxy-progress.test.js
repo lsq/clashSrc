@@ -2,8 +2,8 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createTrayState } = require("../../main/src/electron/features/tray/tray-state");
-const { createTrayProxyProgress, proxyMenuEntries } = require("../../main/src/electron/features/tray/proxy-operation-progress");
+const { createTrayState } = require("../../main/dist/electron/features/tray/tray-state");
+const { createTrayProxyProgress, proxyMenuEntries } = require("../../main/dist/electron/features/tray/proxy-operation-progress");
 
 function fixture(sendError = false) {
     const state = { ...createTrayState(), isReady: true, tunModeChecked: true };

@@ -5,12 +5,12 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const mainPath = path.join(root, "app/main/src/electron/main.js");
+const mainPath = path.join(root, "app/main/dist/electron/main.js");
 const {
     registerAppLifecycle
 } = require(path.join(
     root,
-    "app/main/src/electron/features/application/register-app-lifecycle"
+    "app/main/dist/electron/features/application/register-app-lifecycle"
 ));
 
 async function main() {

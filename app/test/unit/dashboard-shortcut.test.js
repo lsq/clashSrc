@@ -2,7 +2,7 @@
 
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
-const { registerWindowControlIpc } = require("../../main/src/electron/features/window/register-window-control-ipc");
+const { registerWindowControlIpc } = require("../../main/dist/electron/features/window/register-window-control-ipc");
 
 for (const [name, visible, focused, expected] of [
     ["hidden", false, false, "show"],

@@ -71,7 +71,7 @@ function registerCoreIpc({
     registerRepositoryIpc({
         ipcMain, app, getMainWindow, fs: require("fs"), path: require("path"), yaml: require("yaml"),
         filesPath: staticRoot && (app.isPackaged ? require("path").join(staticRoot, "files") : require("path").resolve("static", "files")),
-        getPort: require("get-port"), uuid: require("crypto").randomUUID, Koa: require("koa"), dialog, shell, getLanguage,
+        getPort: require("get-port").default, uuid: require("crypto").randomUUID, Koa: require("koa"), dialog, shell, getLanguage,
         got: require("got"), zlib: require("zlib"), tarStream: require("tar-stream"), activity: profileActivity
     });
     registerNetworkInfoIpc({
@@ -90,7 +90,7 @@ function registerCoreIpc({
                 url, allowsCertificate: value => unsafeUrlPolicy?.allowsCertificate(value, getMainWindow()?.webContents) === true
             })
         });
-        registerPortIpc({ ipcMain, getMainWindow, net: require("net"), dgram: require("dgram"), getPort: require("get-port"), clashApi,
+        registerPortIpc({ ipcMain, getMainWindow, net: require("net"), dgram: require("dgram"), getPort: require("get-port").default, clashApi,
             permissionMayDiffer: process.platform !== "win32" });
         registerApplicationLogIpc({ ipcMain, getMainWindow, app, shell, fs: require("fs"), path: require("path"), logger: require("electron-log"), getSensitiveValues: () => [clashClientRegistry.getConnectionInfo()?.secret] });
         registerDhcpIpc({ ipcMain, app, getMainWindow, powerSaveBlocker, dhcp: require("dhcp"), networkInterfaces: require("os").networkInterfaces, isIPv4: require("net").isIPv4 });
@@ -129,7 +129,12 @@ function registerCoreIpc({
                 getSensitiveValues: () => [clashClientRegistry.getConnectionInfo()?.secret],
                 serviceApi: createClashServiceApi({ client: require("axios"), getCredentials: home => {
                     const portable = path.resolve(app.getPath("exe"), "..", "data");
-                    return readServiceCredentials({ fs, path, home: home || (fs.existsSync(portable) ? portable : path.resolve(app.getPath("home"), ".config", "clash")) });
+                    const dir = home || (fs.existsSync(portable) ? portable : path.resolve(app.getPath("home"), ".config", "clash"));
+                    try { // 修复没有安装误报
+                        return readServiceCredentials({ fs, path, home: dir });
+                    } catch (_error) {
+                        return null;   // 未安装/凭证缺失 → options() 走统一的 "unavailable" 分支
+                    }
                 } }),
                 logger: require("electron-log")
             })
@@ -150,7 +155,7 @@ function registerCoreIpc({
             util: require("util")
         }),
         axios: require("axios"),
-        getPort: require("get-port"),
+        getPort: require("get-port").default,
         shell
     });
 }

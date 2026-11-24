@@ -5,10 +5,10 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const net = require("node:net");
-const { md5 } = require("../../main/src/electron/core/crypto/md5");
-const { createBrowserPath } = require("../../main/src/electron/core/runtime/browser-path");
-const browserIp = require("../../main/src/electron/core/network/browser-ip");
-const { randomUuid } = require("../../main/src/electron/core/crypto/browser-uuid");
+const { md5 } = require("../../main/dist/electron/core/crypto/md5");
+const { createBrowserPath } = require("../../main/dist/electron/core/runtime/browser-path");
+const browserIp = require("../../main/dist/electron/core/network/browser-ip");
+const { randomUuid } = require("../../main/dist/electron/core/crypto/browser-uuid");
 
 test("browser provider hashes preserve UTF-8 legacy MD5 cache identities", () => {
     for (const value of ["", "abc", "https://example.invalid/provider?key=fixture", "中文路径😀", "x".repeat(55), "x".repeat(56), "x".repeat(64), "x".repeat(10000)]) {

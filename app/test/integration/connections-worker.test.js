@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const { Worker } = require("node:worker_threads");
-const { createConnectionPipeline } = require("../../main/src/electron/features/connections/connection-pipeline");
+const { createConnectionPipeline } = require("../../main/dist/electron/features/connections/connection-pipeline");
 const { largeConnections } = require("../fixtures/large-connections");
 
 test("built browser worker processes 100k raw connections off-thread and returns bounded views", { timeout: 20000 }, async t => {

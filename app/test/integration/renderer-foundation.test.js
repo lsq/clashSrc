@@ -9,9 +9,9 @@ const { createRequire } = require("node:module");
 const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
 const Router = require("../../main/node_modules/vue-router");
-const { createRendererRouter } = require("../../main/src/electron/features/renderer-ui/router");
-const { createApplicationComponent, createDialogPlugin } = require("../../main/src/electron/features/renderer-ui/application");
-const { createGlobalMixin } = require("../../main/src/electron/entry/renderer/global-mixin");
+const { createRendererRouter } = require("../../main/dist/electron/features/renderer-ui/router");
+const { createApplicationComponent, createDialogPlugin } = require("../../main/dist/electron/features/renderer-ui/application");
+const { createGlobalMixin } = require("../../main/dist/electron/entry/renderer/global-mixin");
 const { rendererPath } = require("../fixtures/renderer-harness");
 
 test("Renderer foundation: real Vue router preserves every page, fallback and keep-alive policy", async () => {

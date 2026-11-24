@@ -3,7 +3,7 @@
 ## Runtime model
 
 The repository maintains an unpacked Electron application without the complete
-original Vue/Webpack source project. The files under `app/main/src/electron`
+original Vue/Webpack source project. The files under `app/main/dist/electron`
 are maintained source. The build emits browser assets under `app/build/generated`
 without regenerating these maintained entries.
 
@@ -167,7 +167,7 @@ tests are documented in `scripts/native/tap-forwarder/README.md`.
 
 ## Shared renderer UI
 
-Shared components live under `features/renderer-ui/components/`. Each exports a named factory accepting its runtime dependencies. `entry/renderer/create-shared-components.js` constructs them and publishes the stable dialog names. Styles are stored separately in `src/electron/styles.css`.
+Shared components live under `features/renderer-ui/components/`. Each exports a named factory accepting its runtime dependencies. `entry/renderer/create-shared-components.js` constructs them and publishes the stable dialog names. Styles are stored separately in `dist/electron/styles.css`.
 
 `features/renderer-ui/component.js` attaches render functions and preserves the original Vue scope IDs. Render functions retain the established DOM, classes, slots, and event contracts so packaged CSS and existing page callers remain compatible. Vue and Babel helpers are loaded as ordinary declared dependencies. Monaco is an exact, lockfile-controlled build-time dependency compiled into a browser-only asset under `app/build/generated/monaco/` and injected into packages before ASAR creation.
 

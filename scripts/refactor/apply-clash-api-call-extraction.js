@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const rendererPath = path.resolve(__dirname, "../../app/main/src/electron/renderer.js");
+const rendererPath = path.resolve(__dirname, "../../app/main/dist/electron/renderer.js");
 const original = fs.readFileSync(rendererPath);
 let source = original.toString("latin1");
 

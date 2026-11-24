@@ -12,11 +12,11 @@ const yaml = require("../../main/node_modules/yaml");
 const Vuex = require("../../main/node_modules/vuex");
 const axios = require("../../main/node_modules/axios/dist/node/axios.cjs");
 const WebSocket = require("../../main/node_modules/ws");
-const { createSettingsPageOptions } = require("../../main/src/electron/features/settings/page-options");
-const { createCoreConfigRepository } = require("../../main/src/electron/features/settings/core-config-repository");
-const { updateYamlValue } = require("../../main/src/electron/core/storage/yaml-file");
-const { resolveCoreBinaryPath } = require("../../main/src/electron/core/clash-core/core-selection");
-const { createAxiosClient, createWebSocketFactory } = require("../../main/src/electron/core/network/clash-clients");
+const { createSettingsPageOptions } = require("../../main/dist/electron/features/settings/page-options");
+const { createCoreConfigRepository } = require("../../main/dist/electron/features/settings/core-config-repository");
+const { updateYamlValue } = require("../../main/dist/electron/core/storage/yaml-file");
+const { resolveCoreBinaryPath } = require("../../main/dist/electron/core/clash-core/core-selection");
+const { createAxiosClient, createWebSocketFactory } = require("../../main/dist/electron/core/network/clash-clients");
 
 const packages = { "win32:x64": "win_x64", "win32:arm64": "win32-arm64", "linux:x64": "linux-x64",
     "linux:arm64": "linux-arm64", "darwin:x64": "darwin-x64", "darwin:arm64": "darwin-arm64" };

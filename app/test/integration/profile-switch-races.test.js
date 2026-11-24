@@ -6,14 +6,14 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { refreshProfile, refreshTapAfterSetup } = require("../../main/src/electron/entry/renderer/refresh-profile");
+const { refreshProfile, refreshTapAfterSetup } = require("../../main/dist/electron/entry/renderer/refresh-profile");
 const { buildStore } = require("../fixtures/renderer-store");
 const { profilePage } = require("../fixtures/profile-pages");
 const { homePage } = require("../fixtures/home-page");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
-const { createTunClient } = require("../../main/src/electron/core/native/tun-client");
-const { createNativeAdminClient } = require("../../main/src/electron/core/native/native-admin-client");
-const { registerNativeAdminIpc } = require("../../main/src/electron/entry/main/register-native-admin-ipc");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
+const { createTunClient } = require("../../main/dist/electron/core/native/tun-client");
+const { createNativeAdminClient } = require("../../main/dist/electron/core/native/native-admin-client");
+const { registerNativeAdminIpc } = require("../../main/dist/electron/entry/main/register-native-admin-ipc");
 
 function deferred() {
     let resolve;

@@ -4,10 +4,10 @@ const assert = require("node:assert/strict");
 const { test } = require("node:test");
 const { EventEmitter } = require("node:events");
 const { homePage } = require("../fixtures/home-page");
-const { registerGlobalShortcutIpc } = require("../../main/src/electron/features/shortcuts/register-global-shortcut-ipc");
-const { registerWindowControlIpc } = require("../../main/src/electron/features/window/register-window-control-ipc");
-const { registerMainWindowLifecycle } = require("../../main/src/electron/features/window/register-main-window-lifecycle");
-const { createShowMainWindow } = require("../../main/src/electron/features/window/show-main-window");
+const { registerGlobalShortcutIpc } = require("../../main/dist/electron/features/shortcuts/register-global-shortcut-ipc");
+const { registerWindowControlIpc } = require("../../main/dist/electron/features/window/register-window-control-ipc");
+const { registerMainWindowLifecycle } = require("../../main/dist/electron/features/window/register-main-window-lifecycle");
+const { createShowMainWindow } = require("../../main/dist/electron/features/window/show-main-window");
 
 test("Script mode shortcut is unregistered for Mihomo and restored for Clash", async () => {
     const calls = [];

@@ -6,7 +6,7 @@ const {
     supportsScriptMode,
     isRoutingModeSupported,
     normalizeRoutingMode
-} = require("../../main/src/electron/core/clash-core/core-capabilities");
+} = require("../../main/dist/electron/core/clash-core/core-capabilities");
 
 test("routing modes reflect the selected core's actual API capability", () => {
     assert.equal(supportsScriptMode("clash"), true);

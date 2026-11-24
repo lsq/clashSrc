@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const rendererPath = path.resolve(__dirname, "../../app/main/src/electron/renderer.js");
+const rendererPath = path.resolve(__dirname, "../../app/main/dist/electron/renderer.js");
 let source = fs.readFileSync(rendererPath);
 const bytes = value => Buffer.from(value, "utf8");
 const startNeedle = bytes("                    R = {\n                        getMode: function(e) {");

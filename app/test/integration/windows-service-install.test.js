@@ -7,8 +7,8 @@ const path = require("node:path");
 const os = require("node:os");
 const crypto = require("node:crypto");
 const { execFileSync } = require("node:child_process");
-const { createServiceModeManager } = require("../../main/src/electron/features/service-mode/service-mode-manager");
-const { createServiceCredentials } = require("../../main/src/electron/core/network/service-credentials");
+const { createServiceModeManager } = require("../../main/dist/electron/features/service-mode/service-mode-manager");
+const { createServiceCredentials } = require("../../main/dist/electron/core/network/service-credentials");
 
 test("Windows installer copies the complete authenticated service payload with the real command interpreter", { skip: process.platform !== "win32" }, async t => {
     const temporary = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "cfw-install-")));

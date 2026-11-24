@@ -9,10 +9,10 @@ const Vue = require("../../main/node_modules/vue");
 const yaml = require("../../main/node_modules/yaml");
 const { homePage } = require("../fixtures/home-page");
 const { buildStore } = require("../fixtures/renderer-store");
-const { createRendererConfiguration } = require("../../main/src/electron/entry/renderer/configuration");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { createSettingsRepository } = require("../../main/src/electron/features/settings/settings-repository");
-const { ensureMixinDefaults, validateMixinSettings } = require("../../main/src/electron/features/mixin/mixin-runtime");
+const { createRendererConfiguration } = require("../../main/dist/electron/entry/renderer/configuration");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { createSettingsRepository } = require("../../main/dist/electron/features/settings/settings-repository");
+const { ensureMixinDefaults, validateMixinSettings } = require("../../main/dist/electron/features/mixin/mixin-runtime");
 
 for (const core of ["mihomo", "clash"]) for (const firstToggle of ["mixin", "tun"]) {
     test(`fresh ${core} startup applies its default before the first ${firstToggle} toggle without visiting Profiles`, async t => {

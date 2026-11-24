@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createConnectionPipeline } = require("../../main/src/electron/features/connections/connection-pipeline");
+const { createConnectionPipeline } = require("../../main/dist/electron/features/connections/connection-pipeline");
 
 function fixture() {
     const sent = [], views = [];

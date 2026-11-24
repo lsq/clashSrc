@@ -6,10 +6,10 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { EventEmitter } = require("node:events");
 const Vue = require("../../main/node_modules/vue");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { createTapViews } = require("../../main/src/electron/features/clash-core/tap-management-view");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { createTapViews } = require("../../main/dist/electron/features/clash-core/tap-management-view");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
 
 test("TAP dialog blocks Close, Escape and backdrop dismissal throughout native and runtime work", () => {
     const { TapManagementView } = createTapViews({ defineComponent, EscCapture: {}, Hint: {}, getLanguage: () => createTranslator(1) });

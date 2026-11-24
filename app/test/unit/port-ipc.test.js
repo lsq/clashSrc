@@ -4,9 +4,9 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const net = require("node:net");
 const dgram = require("node:dgram");
-const getPort = require("../../main/node_modules/get-port");
-const { registerPortIpc } = require("../../main/src/electron/features/network/register-port-ipc");
-const { recoverWithRandomPort } = require("../../main/src/electron/core/network/mixed-port-recovery");
+const getPort = require("../../main/node_modules/get-port").default;
+const { registerPortIpc } = require("../../main/dist/electron/features/network/register-port-ipc");
+const { recoverWithRandomPort } = require("../../main/dist/electron/core/network/mixed-port-recovery");
 
 test("port IPC checks real loopback sockets and rejects foreign frames and invalid ports", async t => {
     const owner = { mainFrame: {} };

@@ -10,7 +10,7 @@ const {
     DEFAULT_YAML_MIXIN,
     ensureMixinDefaults,
     validateMixinSettings
-} = require(path.join(root, "app/main/src/electron/features/mixin/mixin-runtime"));
+} = require(path.join(root, "app/main/dist/electron/features/mixin/mixin-runtime"));
 
 const yamlParser = require("../../main/node_modules/yaml").parse;
 const codeCompiler = source => source.includes("module.exports.parse") ? { parse() {} } : {};
@@ -42,7 +42,7 @@ assert.throws(
 
 const renderer = readRendererCompositionSource(root);
 const workflow = fs.readFileSync(path.join(
-    root, "app/main/src/electron/features/clash-core/general-page-workflow.js"
+    root, "app/main/dist/electron/features/clash-core/general-page-workflow.js"
 ), "utf8");
 assert.match(renderer, /features\/mixin\/mixin-runtime/);
 assert.match(renderer, /features\/clash-core\/general-page-workflow/);

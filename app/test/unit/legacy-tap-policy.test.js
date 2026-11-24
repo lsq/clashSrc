@@ -4,9 +4,9 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { resolveTapMode, isTapDns } = require("../../main/src/electron/core/network/legacy-tap-policy");
-const { mergeSettings } = require("../../main/src/electron/features/settings/settings-defaults");
-const { createProfileApplication } = require("../../main/src/electron/features/profiles/profile-application");
+const { resolveTapMode, isTapDns } = require("../../main/dist/electron/core/network/legacy-tap-policy");
+const { mergeSettings } = require("../../main/dist/electron/features/settings/settings-defaults");
+const { createProfileApplication } = require("../../main/dist/electron/features/profiles/profile-application");
 
 test("TAP defaults and migration restrict former automatic startup while preserving explicit opt-out and new choices", () => {
     for (const settings of [{}, { legacyTapEnabled: true }, { legacyTapMode: "unknown" }]) {

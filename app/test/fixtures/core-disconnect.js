@@ -1,7 +1,7 @@
 "use strict";
 const net = require("node:net");
 const assert = require("node:assert/strict");
-const { prepareDisconnectCleanup } = require("../../main/src/electron/features/connections/disconnect-cleanup");
+const { prepareDisconnectCleanup } = require("../../main/dist/electron/features/connections/disconnect-cleanup");
 
 async function until(check, description = "loopback connection state") {
     // The controller and mixed listener can be ready before Mihomo publishes a

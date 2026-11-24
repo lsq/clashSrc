@@ -6,11 +6,11 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "../../..");
 const { createNativeAdminClient } = require(path.join(
     root,
-    "app/main/src/electron/core/native/native-admin-client"
+    "app/main/dist/electron/core/native/native-admin-client"
 ));
 const { registerNativeAdminIpc } = require(path.join(
     root,
-    "app/main/src/electron/entry/main/register-native-admin-ipc"
+    "app/main/dist/electron/entry/main/register-native-admin-ipc"
 ));
 
 async function run() {

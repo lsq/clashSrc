@@ -3,8 +3,8 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { performance } = require("node:perf_hooks");
-const { createConnectionModel, windowRange, MAX_VISIBLE } = require("../../main/src/electron/features/connections/connection-model");
-const { normalizeConnectionsSnapshot } = require("../../main/src/electron/features/clash-core/core-api-compat");
+const { createConnectionModel, windowRange, MAX_VISIBLE } = require("../../main/dist/electron/features/connections/connection-model");
+const { normalizeConnectionsSnapshot } = require("../../main/dist/electron/features/clash-core/core-api-compat");
 const { largeConnections } = require("../fixtures/large-connections");
 
 test("100,000 connections: linear previous-ID lookup, bounded viewport, full search and detail", t => {

@@ -3,7 +3,7 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
-const { createDns } = require("../../main/src/electron/features/renderer-ui/components/dns");
+const { createDns } = require("../../main/dist/electron/features/renderer-ui/components/dns");
 
 function fixture() {
     const options = createDns({ Vuex: { mapGetters: () => ({}) }, getLanguage: () => ({ pleaseInputDomain: () => "domain required" }) });

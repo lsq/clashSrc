@@ -8,8 +8,8 @@ const os = require("node:os");
 const path = require("node:path");
 const { spawn, execFileSync } = require("node:child_process");
 const { test } = require("node:test");
-const { createClashServiceApi, SERVICE_BASE_URL } = require("../../main/src/electron/core/network/clash-service-api");
-const { createServiceCredentials, readServiceCredentials } = require("../../main/src/electron/core/network/service-credentials");
+const { createClashServiceApi, SERVICE_BASE_URL } = require("../../main/dist/electron/core/network/clash-service-api");
+const { createServiceCredentials, readServiceCredentials } = require("../../main/dist/electron/core/network/service-credentials");
 const axios = require("../../main/node_modules/axios");
 
 const root = path.resolve(__dirname, "../../..");

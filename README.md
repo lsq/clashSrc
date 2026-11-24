@@ -65,8 +65,6 @@
 
 **[这些issues非常需要您的帮助/贡献](https://github.com/Z-Siqi/Clash-for-Windows_Chinese/issues?q=label%3A%22Need+Help%22+)**
 
-***
-
 ### 快速导航
 [前往汉化下载界面](https://github.com/Z-Siqi/Clash-for-Windows_Chinese/releases)
 

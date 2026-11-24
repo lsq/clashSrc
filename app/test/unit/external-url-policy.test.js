@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { normalizeExternalUrl } = require("../../main/src/electron/core/network/external-url-policy");
+const { normalizeExternalUrl } = require("../../main/dist/electron/core/network/external-url-policy");
 
 test("external URL policy permits HTTPS and explicit loopback HTTP only", () => {
     assert.equal(normalizeExternalUrl("https://example.com/path"), "https://example.com/path");

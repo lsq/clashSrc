@@ -4,7 +4,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const { EventEmitter } = require("node:events");
 const { isIPv4 } = require("node:net");
-const { registerDhcpIpc } = require("../../main/src/electron/features/router/register-dhcp-ipc");
+const { registerDhcpIpc } = require("../../main/dist/electron/features/router/register-dhcp-ipc");
 
 function harness(t) {
     const app = new EventEmitter();

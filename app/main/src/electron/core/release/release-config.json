@@ -1,10 +1,10 @@
 {
-  "version": "0.20.39.5",
-  "displayVersion": "Opt-5",
-  "electronVersion": "44.7.2",
+  "version": "1.0.0",
+  "displayVersion": "Opt-1",
+  "electronVersion": "45.4.1",
   "productName": "Clash for Windows",
   "applicationId": "com.lbyczf.clashwin",
-  "repository": "Z-Siqi/Clash-for-Windows_Chinese",
+  "repository": "lsq/Clash-for-Windows_Chinese",
   "updateBranch": "main",
   "subscriptionUserAgent": "Mihomo.ClashforWindows/Optimize",
   "publishedTargets": [

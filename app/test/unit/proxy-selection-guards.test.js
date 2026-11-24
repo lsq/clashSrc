@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createProxiesPage } = require("../../main/src/electron/features/proxies/page");
+const { createProxiesPage } = require("../../main/dist/electron/features/proxies/page");
 
 function fixture() {
     const page = createProxiesPage({ defineComponent: options => options,

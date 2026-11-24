@@ -1,9 +1,9 @@
 "use strict";
 
 const { rendererLanguage } = require("./renderer-harness");
-const { createServerPageWorkflow } = require("../../main/src/electron/features/profiles/server-page-workflow");
-const { createProxiesPage } = require("../../main/src/electron/features/proxies/page");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
+const { createServerPageWorkflow } = require("../../main/dist/electron/features/profiles/server-page-workflow");
+const { createProxiesPage } = require("../../main/dist/electron/features/proxies/page");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
 const Vuex = require("../../main/node_modules/vuex");
 const lodash = require("../../main/node_modules/lodash");
 

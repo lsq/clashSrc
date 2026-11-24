@@ -5,8 +5,8 @@ These rules apply to the whole repository. Preserve user work and keep changes s
 ## Repository shape
 
 - This project maintains an unpacked, production Electron application. There is no complete original Vue/Webpack source tree.
-- `app/main/src/electron/main.js` and `renderer.js` are executable CommonJS entry points, not disposable build output.
-- Maintainable behavior belongs in CommonJS modules under `app/main/src/electron/core`, `features`, or `entry`; executable entries only adapt and delegate.
+- `app/main/dist/electron/main.js` and `renderer.js` are executable CommonJS entry points, not disposable build output.
+- Maintainable behavior belongs in CommonJS modules under `app/main/dist/electron/core`, `features`, or `entry`; executable entries only adapt and delegate.
 - `app/clash_core/<target>/static/files` contains packaged platform assets. The same source fix may need to be mirrored across target packages.
 - `scripts/refactor/apply-*.js` records historical byte-preserving migrations. Do not run an apply script blindly on an already-migrated tree.
 

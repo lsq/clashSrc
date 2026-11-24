@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { createCoreConfigRepository } = require("../../main/src/electron/features/settings/core-config-repository");
+const { createCoreConfigRepository } = require("../../main/dist/electron/features/settings/core-config-repository");
 
 function setup(t, platform = "linux") {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-config-"));

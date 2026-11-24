@@ -136,7 +136,15 @@ function createContextMenuBuilder({
             return Object.entries(proxies)
                 .filter(([, proxy]) => proxy && proxy.type === "Selector")
                 .map(([name, proxy]) => ({ name, all: proxy.all, now: proxy.now }))
-                .sort((left, right) => (globalRank.get(left.name) ?? -1) - (globalRank.get(right.name) ?? -1))
+                .sort((left, right) => {
+                    const leftIndex = globalRank.get(left.name) ?? -1;
+                    const rightIndex = globalRank.get(right.name) ?? -1;
+
+                    if (leftIndex === -1 && rightIndex === -1) return 0;
+                    if (leftIndex === -1) return 1;
+                    if (rightIndex === -1) return -1;
+                    return leftIndex - rightIndex;
+                })
                 .map((group, groupIndex) => ({
                     label: group.name,
                     submenu: group.all.map((proxyName, proxyIndex) => {

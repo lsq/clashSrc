@@ -7,9 +7,9 @@ const path = require("node:path");
 const os = require("node:os");
 const { EventEmitter } = require("node:events");
 const yaml = require("../../main/node_modules/yaml");
-const { registerProfileDownloadIpc } = require("../../main/src/electron/entry/main/register-profile-download-ipc");
-const { createProfileDownloadClient } = require("../../main/src/electron/core/native/profile-download-client");
-const { createProfileWorkerRuntime } = require("../../main/src/electron/features/profiles/profile-worker-runtime");
+const { registerProfileDownloadIpc } = require("../../main/dist/electron/entry/main/register-profile-download-ipc");
+const { createProfileDownloadClient } = require("../../main/dist/electron/core/native/profile-download-client");
+const { createProfileWorkerRuntime } = require("../../main/dist/electron/features/profiles/profile-worker-runtime");
 
 test("profile download host authenticates frames and loads only saved parser policy and file roots", async t => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-profile-ipc-"));

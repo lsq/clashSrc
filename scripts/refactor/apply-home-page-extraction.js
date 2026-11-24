@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const electronRoot = path.resolve(__dirname, "../../app/main/src/electron");
+const electronRoot = path.resolve(__dirname, "../../app/main/dist/electron");
 const rendererPath = path.join(electronRoot, "renderer.js");
 const featurePath = path.join(electronRoot, "features/home/page.js");
 let source = fs.readFileSync(rendererPath, "utf8");

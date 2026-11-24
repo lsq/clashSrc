@@ -2,7 +2,7 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { registerClashClientInfo } = require("../../main/src/electron/entry/main/register-clash-client-info");
+const { registerClashClientInfo } = require("../../main/dist/electron/entry/main/register-clash-client-info");
 
 test("controller registration accepts only a dashboard main-frame request with a valid loopback port", () => {
     let handler;

@@ -2,8 +2,8 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-const release = require("../../app/main/src/electron/core/release/release-info");
-const { writeAtomic } = require("../../app/main/src/electron/core/storage/atomic-file");
+const release = require("../../app/main/dist/electron/core/release/release-info");
+const { writeAtomic } = require("../../app/main/dist/electron/core/storage/atomic-file");
 const repositoryRoot = path.resolve(__dirname, "../..");
 
 function synchronizeRelease(root = repositoryRoot, info = release, check = false, fileSystem = fs) {

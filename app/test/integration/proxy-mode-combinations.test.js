@@ -4,11 +4,11 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { createRendererCapabilities } = require("../../main/src/electron/entry/renderer/capabilities");
-const { DEFAULT_MIXIN } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { networkModeDiagnostics } = require("../../main/src/electron/features/profiles/network-mode-diagnostics");
-const { buildTunConfig } = require("../../main/src/electron/features/tun/build-tun-config");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { createRendererCapabilities } = require("../../main/dist/electron/entry/renderer/capabilities");
+const { DEFAULT_MIXIN } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { networkModeDiagnostics } = require("../../main/dist/electron/features/profiles/network-mode-diagnostics");
+const { buildTunConfig } = require("../../main/dist/electron/features/tun/build-tun-config");
 
 function fixture(bits, tapAllowed = true, tapInstalled = true) {
     const closed = [], payloads = [];

@@ -4,8 +4,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const http = require("node:http");
 const Koa = require("../../main/node_modules/koa");
-const getPort = require("../../main/node_modules/get-port");
-const { createPacServerRuntime } = require("../../main/src/electron/features/network/pac-server-runtime");
+const getPort = require("../../main/node_modules/get-port").default;
+const { createPacServerRuntime } = require("../../main/dist/electron/features/network/pac-server-runtime");
 
 function request(port, resource) {
     return new Promise((resolve, reject) => {

@@ -5,10 +5,10 @@ const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
-const { getMonacoRuntime } = require("../../main/src/electron/entry/renderer/monaco-runtime");
+const { getMonacoRuntime } = require("../../main/dist/electron/entry/renderer/monaco-runtime");
 
 const root = path.resolve(__dirname, "../../..");
-const electronRoot = path.join(root, "app/main/src/electron");
+const electronRoot = path.join(root, "app/main/dist/electron");
 const generatedRoot = path.join(root, "app/build/generated/monaco");
 
 function sha256(file) {
@@ -110,7 +110,7 @@ test("every packaging target delegates to the lock-safe build pipeline", () => {
     assert.match(packager, /"mac-arm64"/);
     assert.match(packager, /platform: "darwin"/);
     assert.match(packager, /appBundleId: releaseConfig\.applicationId/);
-    assert.equal(require("../../main/src/electron/core/release/release-info").config.applicationId, "com.lbyczf.clashwin");
+    assert.equal(require("../../main/dist/electron/core/release/release-info").config.applicationId, "com.lbyczf.clashwin");
     assert.match(packager, /electronVersion: releaseConfig\.electronVersion/);
     assert.match(packager, /appVersion: releaseConfig\.version/);
     assert.match(packager, /appCategoryType: "public\.app-category\.utilities"/);

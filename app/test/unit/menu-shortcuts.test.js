@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { bindMenuShortcuts, shouldNavigateForShortcut } = require("../../main/src/electron/features/home/menu-shortcuts");
+const { bindMenuShortcuts, shouldNavigateForShortcut } = require("../../main/dist/electron/features/home/menu-shortcuts");
 
 test("menu digit shortcuts yield to Monaco EditContext, text controls, overlays and composition", () => {
     for (const owner of [".monaco-editor", ".no-esc", "input", "textarea", "select", '[role="textbox"]']) {

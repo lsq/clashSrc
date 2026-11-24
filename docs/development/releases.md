@@ -1,6 +1,6 @@
 # Release configuration and update delivery
 
-`app/main/src/electron/core/release/release-config.json` is the editable source
+`app/main/dist/electron/core/release/release-config.json` is the editable source
 for the application version, Electron version, display revision, repository,
 update branch, application identity, default subscription User-Agent and
 published platform targets. `version` is a four-component numeric version

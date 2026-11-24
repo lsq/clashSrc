@@ -4,9 +4,9 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
-const { createProfileApplication, dnsHijackAddresses } = require("../../main/src/electron/features/profiles/profile-application");
-const { normalizeLegacyDnsFilters } = require("../../main/src/electron/features/profiles/prepare-profile");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createProfileApplication, dnsHijackAddresses } = require("../../main/dist/electron/features/profiles/profile-application");
+const { normalizeLegacyDnsFilters } = require("../../main/dist/electron/features/profiles/prepare-profile");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 function harness(overrides = {}) {
     const calls = [];
@@ -269,7 +269,7 @@ test("a failed timing sink cannot change a successful apply", async () => {
 });
 
 test("renderer interface discovery suppresses only its own watcher flush and releases on failure", async () => {
-    const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
+    const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
     for (const fail of [false, true]) {
         const model = {
             profilesPath: "temporary", profiles: { index: 0, files: [{ time: "one" }] },
@@ -294,7 +294,7 @@ test("renderer interface discovery suppresses only its own watcher flush and rel
 });
 
 test("renderer refreshes retire obsolete async mixins and recover after the latest apply fails", async () => {
-    const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
+    const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
     let release; let started;
     const entered = new Promise(resolve => { started = resolve; });
     let count = 0; const payloads = [];
@@ -315,7 +315,7 @@ test("renderer refreshes retire obsolete async mixins and recover after the late
     };
     const first = refreshProfile(model, dependencies); await entered;
     const second = refreshProfile(model, dependencies); const third = refreshProfile(model, dependencies);
-    const { readStableProfileState } = require("../../main/src/electron/core/network/profile-refresh-state");
+    const { readStableProfileState } = require("../../main/dist/electron/core/network/profile-refresh-state");
     let selectionRead = false;
     const reading = readStableProfileState(model.clashApi, async () => {
         selectionRead = true;

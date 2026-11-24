@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { EventEmitter } = require("node:events");
-const { registerClashApiIpc } = require("../../main/src/electron/entry/main/register-clash-api-ipc");
-const { createClashApiClient } = require("../../main/src/electron/core/native/clash-api-client");
+const { registerClashApiIpc } = require("../../main/dist/electron/entry/main/register-clash-api-ipc");
+const { createClashApiClient } = require("../../main/dist/electron/core/native/clash-api-client");
 
 function harness(api) {
     let handler, cancel;

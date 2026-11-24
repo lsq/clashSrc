@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
 const yaml = require("../../main/node_modules/yaml");
 const { homePage } = require("../fixtures/home-page");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 function deferred() {
     let resolve;

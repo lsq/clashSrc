@@ -8,9 +8,9 @@ const Vuex = require("../../main/node_modules/vuex");
 const Vue = require("../../main/node_modules/vue");
 Vue.use(Vuex);
 const { largeConnections } = require("../fixtures/large-connections");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createConnectionsPage } = require("../../main/src/electron/features/connections/page");
-const { createConnectionModel } = require("../../main/src/electron/features/connections/connection-model");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createConnectionsPage } = require("../../main/dist/electron/features/connections/page");
+const { createConnectionModel } = require("../../main/dist/electron/features/connections/connection-model");
 const { assertRendererComposition } = require("../fixtures/assert-renderer-composition");
 
 const EmptyComponent = { render: h => h("span") };

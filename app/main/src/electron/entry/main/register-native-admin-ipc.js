@@ -243,7 +243,7 @@ function registerNativeAdminIpc({
                 getClashPath: () => clashPath,
                 getTempPath: () => app.getPath("temp"),
                 hashFile,
-                prepareCredentials: () => createServiceCredentials({ fs, path, crypto, home: clashPath,
+                prepareCredentials: () => createServiceCredentials({ fs, path, crypto, home: clashPath, extra,
                     protectFile: platform === "win32" ? file => {
                         const identity = childProcess.execFileSync("whoami", ["/user", "/fo", "csv", "/nh"], { windowsHide: true }).toString();
                         const sid = identity.match(/S-1-5-[\d-]+/)?.[0];
@@ -266,16 +266,17 @@ function registerNativeAdminIpc({
                 if (serviceMutation) throw new Error("A Service Mode operation is already in progress");
                 serviceMutation = true;
                 try {
+                    const installOptions = { useSystemMihomo: payload.useSystemMihomo === true }
                     if (action === "install") {
                         const method = payload.method === undefined ? 0 : Number(payload.method);
                         if (platform === "win32" && ![0, 1].includes(method)) {
                             throw new Error("Unsupported Windows Service Mode install method");
                         }
-                        await manager.installService(platform === "win32" ? method : undefined);
+                        await manager.installService(platform === "win32" ? method : undefined, installOptions);
                     } else if (action === "uninstall") {
                         await manager.uninstallService();
                     } else {
-                        await manager.updateService();
+                        await manager.updateService(installOptions);
                     }
                     return true;
                 } finally { serviceMutation = false; }

@@ -4,9 +4,9 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
 const Vue = require("../../main/node_modules/vue");
-const { refreshProfile } = require("../../main/src/electron/entry/renderer/refresh-profile");
-const { createRendererCapabilities } = require("../../main/src/electron/entry/renderer/capabilities");
-const { renderConnectionDisconnectSettings } = require("../../main/src/electron/features/connections/settings-view");
+const { refreshProfile } = require("../../main/dist/electron/entry/renderer/refresh-profile");
+const { createRendererCapabilities } = require("../../main/dist/electron/entry/renderer/capabilities");
+const { renderConnectionDisconnectSettings } = require("../../main/dist/electron/features/connections/settings-view");
 
 function fixture() {
     const events = [];

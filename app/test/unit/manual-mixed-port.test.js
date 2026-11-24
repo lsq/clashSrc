@@ -2,9 +2,9 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { setManualMixedPort } = require("../../main/src/electron/core/network/manual-mixed-port");
-const { createGeneralPageWorkflow } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { createHomePageOptions } = require("../../main/src/electron/features/home/page-options");
+const { setManualMixedPort } = require("../../main/dist/electron/core/network/manual-mixed-port");
+const { createGeneralPageWorkflow } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { createHomePageOptions } = require("../../main/dist/electron/features/home/page-options");
 
 function harness() {
     const calls = [];

@@ -71,7 +71,7 @@ Build/
 ```
 
 The application version, display revision, Electron version and asset naming
-are controlled by `app/main/src/electron/core/release/release-config.json`
+are controlled by `app/main/dist/electron/core/release/release-config.json`
 and its shared release functions. Windows installer names have a distinct
 `.arm64.exe` suffix; the Inno script limits each installer to the matching OS
 architecture. Portable archives retain their package directory at the root.

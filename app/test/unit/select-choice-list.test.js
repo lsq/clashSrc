@@ -3,8 +3,8 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
-const { createSelect } = require("../../main/src/electron/features/renderer-ui/components/select");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createSelect } = require("../../main/dist/electron/features/renderer-ui/components/select");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 function nodes(node) { return !node ? [] : [node, ...(node.children || node.componentOptions?.children || []).flatMap(nodes)]; }
 

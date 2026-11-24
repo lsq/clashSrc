@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { EventEmitter } = require("node:events");
-const { registerCoreStreamIpc } = require("../../main/src/electron/features/clash-core/register-core-stream-ipc");
-const { createCoreStreamClient } = require("../../main/src/electron/core/native/core-stream-client");
+const { registerCoreStreamIpc } = require("../../main/dist/electron/features/clash-core/register-core-stream-ipc");
+const { createCoreStreamClient } = require("../../main/dist/electron/core/native/core-stream-client");
 
 test("stream subscriptions survive controller startup and reconnect without route changes", async () => {
     let ready = false;

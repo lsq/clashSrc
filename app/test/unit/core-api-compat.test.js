@@ -11,7 +11,7 @@ const {
     normalizeStructuredLog,
     parseCoreLogLine,
     normalizeConnectionsSnapshot
-} = require(path.join(root, "app/main/src/electron/features/clash-core/core-api-compat"));
+} = require(path.join(root, "app/main/dist/electron/features/clash-core/core-api-compat"));
 
 assert.equal(normalizeCoreVersion({ meta: true, version: "v1.19.31" }, "mihomo"), "Mihomo v1.19.31");
 assert.equal(normalizeCoreVersion({ premium: true, version: "2023.08.17" }, "clash"), "2023.08.17 Premium");
@@ -67,13 +67,13 @@ assert.deepEqual(normalizedConnection.connections[0].metadata, {});
 
 const renderer = readRendererCompositionSource(root);
 const generalWorkflow = fs.readFileSync(path.join(
-    root, "app/main/src/electron/features/clash-core/general-page-workflow.js"
+    root, "app/main/dist/electron/features/clash-core/general-page-workflow.js"
 ), "utf8");
 const logsPage = fs.readFileSync(path.join(
-    root, "app/main/src/electron/features/logs/page.js"
+    root, "app/main/dist/electron/features/logs/page.js"
 ), "utf8");
 const connectionsPage = fs.readFileSync(path.join(
-    root, "app/main/src/electron/features/connections/page.js"
+    root, "app/main/dist/electron/features/connections/page.js"
 ), "utf8");
 assert.match(renderer, /features\/clash-core\/core-api-compat/);
 assert.match(renderer, /features\/clash-core\/general-page-workflow/);
@@ -81,7 +81,7 @@ assert.match(generalWorkflow, /normalizeCoreVersion\(response\.data, core\)/);
 assert.match(logsPage, /normalizeStructuredLog\(JSON\.parse\(payload\)\)/);
 assert.match(logsPage, /parseCoreLogLine\(line\)/);
 assert.doesNotMatch(connectionsPage, /JSON\.parse\(payload\)/, "large snapshots must not parse on the UI thread");
-const connectionWorker = fs.readFileSync(path.join(root, "app/main/src/electron/entry/worker/connections.js"), "utf8");
+const connectionWorker = fs.readFileSync(path.join(root, "app/main/dist/electron/entry/worker/connections.js"), "utf8");
 assert.match(connectionWorker, /normalizeSnapshot: normalizeConnectionsSnapshot/);
 
 console.log("core API compatibility smoke: PASS");

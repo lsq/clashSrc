@@ -10,7 +10,7 @@ const zlib = require("node:zlib");
 const { Readable } = require("node:stream");
 const got = require("../../main/node_modules/got");
 const tarStream = require("../../main/node_modules/tar-stream");
-const { createGeoipRuntime } = require("../../main/src/electron/features/clash-core/geoip-runtime");
+const { createGeoipRuntime } = require("../../main/dist/electron/features/clash-core/geoip-runtime");
 
 function temporaryHome(t) {
     const home = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-geoip-test-"));

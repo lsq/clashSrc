@@ -15,7 +15,7 @@ const { randomUUID } = require("node:crypto");
 const axios = require("../../main/node_modules/axios/dist/node/axios.cjs");
 const yaml = require("../../main/node_modules/yaml");
 const { HttpsProxyAgent } = require("../../main/node_modules/hpagent");
-const { createProfileParser } = require("../../main/src/electron/features/profiles/profile-parser");
+const { createProfileParser } = require("../../main/dist/electron/features/profiles/profile-parser");
 const { homePage } = require("../fixtures/home-page");
 
 // Public test-only key and self-signed certificate; never trusted by the OS.
@@ -119,7 +119,7 @@ test("environment-proxy tunnels recheck certificate exceptions on redirects with
         const assert = require('node:assert/strict');
         const https = require('node:https');
         const axios = require('./app/main/node_modules/axios/dist/node/axios.cjs');
-        const { createCertificateRequestOptions } = require('./app/main/src/electron/core/network/certificate-request-options');
+        const { createCertificateRequestOptions } = require('./app/main/dist/electron/core/network/certificate-request-options');
         const origin = process.argv[1];
         const before = { ...https.globalAgent.options };
         const allowsCertificate = url => [origin + '/listed', origin + '/redirect'].includes(url);

@@ -5,7 +5,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const file = path.resolve(__dirname, "../../app/main/src/electron/renderer.js");
+const file = path.resolve(__dirname, "../../app/main/dist/electron/renderer.js");
 let source = fs.readFileSync(file);
 
 function count(needle) {

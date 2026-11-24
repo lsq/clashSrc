@@ -7,9 +7,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const os = require("node:os");
 const yaml = require("../../main/node_modules/yaml");
-const { registerUserScriptIpc } = require("../../main/src/electron/features/scripts/register-user-script-ipc");
-const { createScriptWorkerRuntime } = require("../../main/src/electron/features/scripts/script-worker-runtime");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { registerUserScriptIpc } = require("../../main/dist/electron/features/scripts/register-user-script-ipc");
+const { createScriptWorkerRuntime } = require("../../main/dist/electron/features/scripts/script-worker-runtime");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 test("context scripts report unconfigured/disabled without starting a worker and notify the renderer", async t => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-action-feedback-"));
@@ -22,7 +22,7 @@ test("context scripts report unconfigured/disabled without starting a worker and
         app: { getPath: name => name === "home" || name === "temp" ? root : path.join(root, "app.exe"), once() {} },
         getMainWindow: () => ({ webContents }), fs, path, yaml, workerPath: "fixed",
         forkWorker() { forks++; throw Error("must not start"); }, dialog: {}, Notification: class {}, clashApi: {} });
-    const { createUserScriptClient, PROFILE_SCRIPT, PROXY_SCRIPT } = require("../../main/src/electron/core/native/user-script-client");
+    const { createUserScriptClient, PROFILE_SCRIPT, PROXY_SCRIPT } = require("../../main/dist/electron/core/native/user-script-client");
     const notices = [], errors = [];
     const client = createUserScriptClient({ getHome: () => home, onUnavailable: status => notices.push(status),
         onError: () => errors.push(true), ipcRenderer: { invoke: (_channel, request) => handler({ sender: webContents, senderFrame: webContents.mainFrame }, request) } });

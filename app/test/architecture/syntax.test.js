@@ -7,7 +7,7 @@ const { spawnSync } = require("node:child_process");
 const parser = require("../../main/node_modules/@babel/parser");
 
 const root = path.resolve(__dirname, "../../..");
-const electronRoot = path.join(root, "app/main/src/electron");
+const electronRoot = path.join(root, "app/main/dist/electron");
 
 function collectJavaScript(directory) {
     return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {

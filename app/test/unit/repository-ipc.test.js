@@ -7,10 +7,10 @@ const os = require("node:os");
 const path = require("node:path");
 const { EventEmitter } = require("node:events");
 const yaml = require("../../main/node_modules/yaml");
-const { registerRepositoryIpc } = require("../../main/src/electron/entry/main/register-repository-ipc");
-const { createRepositoryClients } = require("../../main/src/electron/core/native/repository-client");
-const { createCoreConfigClient } = require("../../main/src/electron/core/native/core-config-client");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { registerRepositoryIpc } = require("../../main/dist/electron/entry/main/register-repository-ipc");
+const { createRepositoryClients } = require("../../main/dist/electron/core/native/repository-client");
+const { createCoreConfigClient } = require("../../main/dist/electron/core/native/core-config-client");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 function harness(t, injectedFs = fs, coreConfig = false, overrides = {}) {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "cfw-repo-ipc-"));

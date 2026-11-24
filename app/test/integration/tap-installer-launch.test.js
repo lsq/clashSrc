@@ -7,7 +7,7 @@ const os = require("node:os");
 const path = require("node:path");
 const childProcess = require("node:child_process");
 const { promisify } = require("node:util");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
 
 const execFile = promisify(childProcess.execFile);
 

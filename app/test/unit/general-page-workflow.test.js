@@ -2,8 +2,8 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createGeneralPageWorkflow } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createGeneralPageWorkflow } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 function createWorkflow(overrides = {}) {
     const labels = new Proxy({}, { get(_target, key) { return () => String(key); } });
@@ -148,7 +148,7 @@ test("the Mihomo version action opens an HTTPS dashboard accepted by navigation 
     let opened;
     const { workflow } = createWorkflow({ electron: { shell: { openExternal: async url => { opened = url; } } } });
     await workflow.methods.handleCopyControllerURL.call({ controllerPort: 9090, secret: "", settings: { proxyCore: "mihomo" } });
-    const { normalizeExternalUrl } = require("../../main/src/electron/core/network/external-url-policy");
+    const { normalizeExternalUrl } = require("../../main/dist/electron/core/network/external-url-policy");
     assert.ok(normalizeExternalUrl(opened, { allowLoopbackHttp: true }));
     assert.equal(new URL(opened).searchParams.get("port"), "9090");
 });
@@ -287,6 +287,30 @@ test("general page route entry loads version, service status and initializes the
     assert.deepEqual(calls, [
         ["invoke", "app", "getVersion"], ["service"], ["setup"], ["schedule", 1], ["switches"]
     ]);
+});
+
+test("skipServiceUpdateCheck suppresses the needUpdate probe on route entry and clashPath watch", async () => {
+    const calls = [];
+    const { workflow } = createWorkflow({
+        electron: { ipcRenderer: { invoke: async () => "1.2.3" }, shell: {}, clipboard: {} },
+        service: { needUpdate: () => { calls.push(["service"]); return true; } },
+        schedule: callback => callback()
+    });
+    const page = {
+        settings: { skipServiceUpdateCheck: true },
+        setupComponent() { calls.push(["setup"]); },
+        setupSwitches() { calls.push(["switches"]); }
+    };
+
+    workflow.beforeRouteEnter(null, null, callback => callback(page));
+    await new Promise(resolve => setImmediate(resolve));
+
+    assert.equal(page.serviceNeedUpdate, false);
+    assert.deepEqual(calls, [["setup"], ["switches"]]);
+
+    await workflow.watch.clashPath.call(page);
+    assert.equal(page.serviceNeedUpdate, false);
+    assert.deepEqual(calls, [["setup"], ["switches"]]);
 });
 
 test("service install, update and uninstall keep the blocker through relaunch", async () => {

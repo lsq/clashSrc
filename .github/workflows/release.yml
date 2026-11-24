@@ -1,0 +1,129 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v**'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to build (empty = latest tag)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout (full history for tag resolution)
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Resolve target tag
+        id: tag
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.tag }}"
+            if [ -z "$TAG" ]; then
+              TAG="$(git tag --sort=-creatordate | head -n1)"
+            fi
+          else
+            TAG="${GITHUB_REF_NAME}"
+          fi
+          [ -n "$TAG" ] || { echo "No tag found"; exit 1; }
+          git rev-parse --verify "refs/tags/$TAG"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          git checkout "$TAG"
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: npm
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Download ChineseSimplified.isl for Inno Setup
+        shell: pwsh
+        run: |
+          $langDir = "C:\Program Files (x86)\Inno Setup 6\Languages"
+          New-Item -ItemType Directory -Force -Path $langDir | Out-Null
+          $lgUrl = "https://gh-proxy.org/https://github.com/kira-96/Inno-Setup-Chinese-Simplified-Translation/raw/refs/heads/main/ChineseSimplified.isl"
+          Invoke-WebRequest -Uri "$lgUrl" -OutFile "$langDir\ChineseSimplified.isl"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update Mihomo to latest release
+        id: mihomo
+        shell: bash
+        run: |
+          # 取上游最新 release tag（形如 v1.19.34）
+          LATEST="$(curl -fsSL https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).tag_name.replace(/^v/,'')")"
+          echo "version=$LATEST" >> "$GITHUB_OUTPUT"
+          # 只更新本次构建的两个平台；其余平台条目保持原样（依赖之前的 per-target version 改动）
+          node scripts/build/mihomo.js update "$LATEST" --target win-x64 --target linux-x64
+
+      - name: Show locked manifest
+        shell: bash
+        run: cat app/clash_core/mihomo-core-manifest.json
+
+      - name: Cache Mihomo binaries
+        uses: actions/cache@v6
+        with:
+          path: app/build/dependencies/mihomo
+          key: mihomo-${{ runner.os }}-${{ hashFiles('app/clash_core/mihomo-core-manifest.json') }}
+
+      - name: Resolve Electron version
+        id: electron
+        shell: bash
+        run: echo "version=$(node -p "require('./app/main/dist/electron/core/release/release-config.json').electronVersion")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Electron runtime zips
+        uses: actions/cache@v6
+        with:
+          path: CFW/BuildRelease/Build/cache/electron
+          key: electron-${{ steps.electron.outputs.version }}
+          restore-keys: electron-
+
+      - name: Build release (win-x64 + linux-x64)
+        env:
+          CFW_7ZIP: C:\Program Files\7-Zip\7z.exe
+        run: node CFW/BuildRelease/build-release.js --targets=win-x64,linux-x64 --skip-tests
+
+      - name: Locate artifacts
+        id: out
+        run: |
+          $dir = (Get-Content CFW/BuildRelease/Build/latest.json | ConvertFrom-Json).artifacts
+          echo "dir=$dir" >> $env:GITHUB_OUTPUT
+          Get-ChildItem $dir
+
+      - name: Upload artifacts to workflow run
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-${{ steps.tag.outputs.tag }}
+          path: ${{ steps.out.outputs.dir }}/*
+
+      - name: Setup upterm session
+        if: failure()
+        with:
+          wait-timeout-minutes: 20
+          detached: true
+        uses: owenthereal/action-upterm@v2
+
+      - name: Publish to GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: ${{ steps.out.outputs.dir }}/*
+          generate_release_notes: true

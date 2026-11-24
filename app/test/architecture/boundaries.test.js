@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const electronRoot = path.join(root, "app/main/src/electron");
+const electronRoot = path.join(root, "app/main/dist/electron");
 const featureRoot = path.join(electronRoot, "features");
 const coreRoot = path.join(electronRoot, "core");
 

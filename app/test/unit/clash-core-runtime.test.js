@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, "../../..");
 const { readRendererCompositionSource } = require("../fixtures/renderer-composition-source");
 const { createClashCoreRuntime } = require(path.join(
     root,
-    "app/main/src/electron/features/clash-core/clash-core-runtime"
+    "app/main/dist/electron/features/clash-core/clash-core-runtime"
 ));
 
 const calls = [];
@@ -240,7 +240,7 @@ async function run() {
 
     const rendererSource = readRendererCompositionSource(root);
     const homePageOptionsSource = fs.readFileSync(path.join(
-        root, "app/main/src/electron/features/home/page-options.js"
+        root, "app/main/dist/electron/features/home/page-options.js"
     ), "utf8");
     assert.doesNotMatch(rendererSource, /features\/clash-core\/clash-core-runtime/);
     assert.match(rendererSource, /createClashCoreRuntime: \(\) => runtime\.coreLifecycle/);

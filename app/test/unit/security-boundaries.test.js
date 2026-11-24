@@ -6,11 +6,11 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { execFileSync } = require("node:child_process");
-const { registerDownloadIpc } = require("../../main/src/electron/features/download/register-download-ipc");
-const { createUnsafeUrlPolicy } = require("../../main/src/electron/features/security/unsafe-url-policy");
-const { createServiceCredentials, readServiceCredentials } = require("../../main/src/electron/core/network/service-credentials");
-const { buildPosixServiceInstall, posixServiceDirectory } = require("../../main/src/electron/features/service-mode/install-posix-service");
-const { createAuthorizedIpcMain } = require("../../main/src/electron/core/native/authorized-ipc");
+const { registerDownloadIpc } = require("../../main/dist/electron/features/download/register-download-ipc");
+const { createUnsafeUrlPolicy } = require("../../main/dist/electron/features/security/unsafe-url-policy");
+const { createServiceCredentials, readServiceCredentials } = require("../../main/dist/electron/core/network/service-credentials");
+const { buildPosixServiceInstall, posixServiceDirectory } = require("../../main/dist/electron/features/service-mode/install-posix-service");
+const { createAuthorizedIpcMain } = require("../../main/dist/electron/core/native/authorized-ipc");
 
 test("all legacy IPC channels reject other frames and the indicator can only show its owner", () => {
     const handlers = new Map(), listeners = new Map();
@@ -134,7 +134,7 @@ test("POSIX service installations keep executable cores and policy outside writa
 });
 
 test("malformed log fields and legacy style literals finish in bounded time", () => {
-    const compat = path.resolve(__dirname, "../../main/src/electron/features/clash-core/core-api-compat.js");
+    const compat = path.resolve(__dirname, "../../main/dist/electron/features/clash-core/core-api-compat.js");
     const extractor = path.resolve(__dirname, "../../../scripts/refactor/extract-legacy-renderer-styles.js");
     // A separate process timeout catches a blocking regex; a test timer alone cannot.
     const source = `const {parseCoreLogLine}=require(${JSON.stringify(compat)}); const {extractLegacyStyles}=require(${JSON.stringify(extractor)});

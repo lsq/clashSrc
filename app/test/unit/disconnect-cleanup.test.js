@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { prepareDisconnectCleanup } = require("../../main/src/electron/features/connections/disconnect-cleanup");
+const { prepareDisconnectCleanup } = require("../../main/dist/electron/features/connections/disconnect-cleanup");
 
 function setup() {
     const closed = [], errors = [];

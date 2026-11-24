@@ -6,11 +6,11 @@ const path = require("node:path");
 const Vue = require("../../main/node_modules/vue");
 const draggable = require("../../main/node_modules/vuedraggable");
 const yaml = require("../../main/node_modules/yaml");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { createProfileEditor } = require("../../main/src/electron/features/profiles/profile-editor-page");
-const { createRuleEditor } = require("../../main/src/electron/features/profiles/rule-editor-page");
-const { buildProxyConfig } = require("../../main/src/electron/features/profiles/proxy-editor-config");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { createProfileEditor } = require("../../main/dist/electron/features/profiles/profile-editor-page");
+const { createRuleEditor } = require("../../main/dist/electron/features/profiles/rule-editor-page");
+const { buildProxyConfig } = require("../../main/dist/electron/features/profiles/proxy-editor-config");
 
 const Vuex = { mapState: () => ({}), mapGetters: () => ({}) };
 const labels = createTranslator(1);

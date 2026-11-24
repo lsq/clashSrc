@@ -2,11 +2,11 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createLogsPage } = require("../../main/src/electron/features/logs/page");
-const { createProxiesPage } = require("../../main/src/electron/features/proxies/page");
-const { createSettingsPageOptions } = require("../../main/src/electron/features/settings/page-options");
-const { createGeneralPageWorkflow } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createLogsPage } = require("../../main/dist/electron/features/logs/page");
+const { createProxiesPage } = require("../../main/dist/electron/features/proxies/page");
+const { createSettingsPageOptions } = require("../../main/dist/electron/features/settings/page-options");
+const { createGeneralPageWorkflow } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 const { homePage } = require("../fixtures/home-page");
 
 const Vuex = { mapState: () => ({}), mapGetters: () => ({}), mapMutations: () => ({}), mapActions: () => ({}) };

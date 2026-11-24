@@ -3,9 +3,9 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { homePage } = require("../fixtures/home-page");
-const { createUpdateFeed, assetName, legacyWindowsAssetName } = require("../../main/src/electron/core/release/release-info");
-const { createGeneralPageWorkflow } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createUpdateFeed, assetName, legacyWindowsAssetName } = require("../../main/dist/electron/core/release/release-info");
+const { createGeneralPageWorkflow } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 
 for (const legacy of [false, true]) {
 test(`production update check recognizes the ${legacy ? "compatibility" : "regular"} Windows installer and compares four-part versions`, async () => {

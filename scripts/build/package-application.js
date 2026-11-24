@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
-const { config: releaseConfig } = require("../../app/main/src/electron/core/release/release-info");
+const { config: releaseConfig } = require("../../app/main/dist/electron/core/release/release-info");
 const { synchronizeRelease } = require("./sync-release");
 const { prepareMihomo } = require("./mihomo-dependency");
 

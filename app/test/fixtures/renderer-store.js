@@ -6,14 +6,14 @@ const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
 const yaml = require("../../main/node_modules/yaml");
 const lodash = require("../../main/node_modules/lodash");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { createJsonCache } = require("../../main/src/electron/core/storage/json-cache");
-const { connectionStatus, proxyStatus } = require("../../main/src/electron/features/application-state/status");
-const { preferenceKeys } = require("../../main/src/electron/features/settings/preference-keys");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { createJsonCache } = require("../../main/dist/electron/core/storage/json-cache");
+const { connectionStatus, proxyStatus } = require("../../main/dist/electron/features/application-state/status");
+const { preferenceKeys } = require("../../main/dist/electron/features/settings/preference-keys");
 const {
     createRendererAppModule,
     createRendererStore
-} = require("../../main/src/electron/entry/renderer/create-renderer-store");
+} = require("../../main/dist/electron/entry/renderer/create-renderer-store");
 
 function buildStore({ home, storage = new Map(), fileSystem = fs, axios = { create: () => null }, systemLanguage = "zh-CN" }) {
     const cache = createJsonCache({

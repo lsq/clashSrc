@@ -42,7 +42,7 @@ const serviceApi = {
 const originalLoad = Module._load;
 Module._load = function loadFixtureModule(request, parent, isMain) {
     const filename = (parent?.filename || "").replace(/\\/g, "/");
-    if (filename.includes("/src/electron/")) {
+    if (filename.includes("/dist/electron/")) {
         if (request === "child_process") return childProcess;
         if (request.endsWith("/network-interfaces")) return {
             detectDefaultInterface: async () => "Fixture Ethernet",

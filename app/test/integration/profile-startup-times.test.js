@@ -4,11 +4,11 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
-const moment = require("../../main/src/electron/core/i18n/moment");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createServerPage } = require("../../main/src/electron/features/profiles/server-page");
-const { createServerPageWorkflow } = require("../../main/src/electron/features/profiles/server-page-workflow");
+const moment = require("../../main/dist/electron/core/i18n/moment");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createServerPage } = require("../../main/dist/electron/features/profiles/server-page");
+const { createServerPageWorkflow } = require("../../main/dist/electron/features/profiles/server-page-workflow");
 
 Vue.use(Vuex);
 const settle = async () => { await Vue.nextTick(); await new Promise(setImmediate); };

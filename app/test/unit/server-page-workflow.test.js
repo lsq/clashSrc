@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createServerPageWorkflow, MANUAL_STOP } = require("../../main/src/electron/features/profiles/server-page-workflow");
+const { createServerPageWorkflow, MANUAL_STOP } = require("../../main/dist/electron/features/profiles/server-page-workflow");
 
 function createWorkflow(overrides = {}) {
     const dialogs = [];

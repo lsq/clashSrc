@@ -2,7 +2,7 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { registerApplicationIpc } = require("../../main/src/electron/features/application/register-application-ipc");
+const { registerApplicationIpc } = require("../../main/dist/electron/features/application/register-application-ipc");
 
 test("application IPC rejects subframes and strips executable overrides from login settings", () => {
     const handlers = {};

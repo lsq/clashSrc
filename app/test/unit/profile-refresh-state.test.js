@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { trackProfileRefresh, readStableProfileState } = require("../../main/src/electron/core/network/profile-refresh-state");
+const { trackProfileRefresh, readStableProfileState } = require("../../main/dist/electron/core/network/profile-refresh-state");
 
 function deferred() {
     let resolve;

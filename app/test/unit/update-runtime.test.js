@@ -3,7 +3,7 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
-const { createUpdateRuntime } = require("../../main/src/electron/features/application/update-runtime");
+const { createUpdateRuntime } = require("../../main/dist/electron/features/application/update-runtime");
 
 function harness({ isMacOS = false } = {}) {
     const listeners = new Map(), invokes = [], commits = [], removed = [], commands = [];

@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const electronRoot = path.join(root, "app/main/src/electron");
+const electronRoot = path.join(root, "app/main/dist/electron");
 const { readRendererCompositionSource } = require("../fixtures/renderer-composition-source");
 const {
     normalizeCoreType,

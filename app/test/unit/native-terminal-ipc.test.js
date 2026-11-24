@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path").win32;
-const { registerNativeAdminIpc } = require("../../main/src/electron/entry/main/register-native-admin-ipc");
-const { registerCoreLogIpc } = require("../../main/src/electron/features/logs/register-core-log-ipc");
+const { registerNativeAdminIpc } = require("../../main/dist/electron/entry/main/register-native-admin-ipc");
+const { registerCoreLogIpc } = require("../../main/dist/electron/features/logs/register-core-log-ipc");
 
 test("terminal IPC accepts only fixed terminal choices, validated ports and the packaged loopback helper", async () => {
     let handler;

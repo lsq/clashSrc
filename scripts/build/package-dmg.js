@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
-const { assetName } = require("../../app/main/src/electron/core/release/release-info");
+const { assetName } = require("../../app/main/dist/electron/core/release/release-info");
 
 const repositoryRoot = path.resolve(__dirname, "../..");
 const applicationRoot = path.join(repositoryRoot, "app");

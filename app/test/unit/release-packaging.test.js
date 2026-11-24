@@ -8,7 +8,7 @@ const path = require("node:path");
 const { gunzipSync } = require("node:zlib");
 const { createHash } = require("node:crypto");
 const vm = require("node:vm");
-const release = require("../../main/src/electron/core/release/release-info");
+const release = require("../../main/dist/electron/core/release/release-info");
 const { planTargets, resolveContained } = require("../../../CFW/BuildRelease/build-release");
 const { createDeb, createTarGz } = require("../../../CFW/BuildRelease/linux-packages");
 
@@ -42,7 +42,7 @@ test("the release runner writes display-labelled archives, Debian files, checksu
     const runner = { exports: {} };
     const dependencies = {
         "node:fs": fs, "node:path": path, "node:crypto": require("node:crypto"),
-        "../../app/main/src/electron/core/release/release-info": release,
+        "../../app/main/dist/electron/core/release/release-info": release,
         "./linux-packages": { createDeb, createTarGz },
         "../../scripts/build/sync-release": { synchronizeRelease() {} },
         "node:child_process": { spawnSync(_command, args, options) {

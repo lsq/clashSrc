@@ -8,8 +8,8 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 const BigNumber = require("../../main/node_modules/bignumber.js");
 const yaml = require("../../main/node_modules/yaml");
-const { createRendererUtilities } = require("../../main/src/electron/entry/renderer/utilities");
-const { installEditorLanguage } = require("../../main/src/electron/features/renderer-ui/editor-language");
+const { createRendererUtilities } = require("../../main/dist/electron/entry/renderer/utilities");
+const { installEditorLanguage } = require("../../main/dist/electron/features/renderer-ui/editor-language");
 
 function utilities({ store, ipcRenderer, shell, Notification, updateConfig, storage = new Map(), locale = 0 }) {
     return createRendererUtilities({
@@ -107,7 +107,7 @@ test("Editor foundation: production bridge registers YAML completion, provider l
             if (fail) throw Error("offline");
             return { status: 200, data: { rule: { prefix: "MATCH", body: ["MATCH,${1:policy}"] } } };
         } },
-        labels: require("../../main/src/electron/core/i18n/language").createTranslator(() => locale)
+        labels: require("../../main/dist/electron/core/i18n/language").createTranslator(() => locale)
     });
     const model = {
         getValue: () => 'proxies:\n  - name: "node"\nrules:\n  ',

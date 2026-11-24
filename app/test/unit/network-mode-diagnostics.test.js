@@ -2,8 +2,8 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { networkModeDiagnostics } = require("../../main/src/electron/features/profiles/network-mode-diagnostics");
-const { buildTunConfig } = require("../../main/src/electron/features/tun/build-tun-config");
+const { networkModeDiagnostics } = require("../../main/dist/electron/features/profiles/network-mode-diagnostics");
+const { buildTunConfig } = require("../../main/dist/electron/features/tun/build-tun-config");
 
 test("diagnostics distinguish requested TUN from the accepted Mixin/profile configuration", () => {
     const tunConfig = buildTunConfig({}, "win32");

@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const release = require("../../main/src/electron/core/release/release-info");
-const { selectReleaseAsset } = require("../../main/src/electron/core/release/update-policy");
+const release = require("../../main/dist/electron/core/release/release-info");
+const { selectReleaseAsset } = require("../../main/dist/electron/core/release/update-policy");
 const { synchronizeRelease } = require("../../../scripts/build/sync-release");
 
 test("release versions compare numeric components, v tags and historical Opt tags", () => {

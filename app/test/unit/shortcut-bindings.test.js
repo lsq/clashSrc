@@ -2,9 +2,9 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createShortcutBindings } = require("../../main/src/electron/features/shortcuts/shortcut-bindings");
+const { createShortcutBindings } = require("../../main/dist/electron/features/shortcuts/shortcut-bindings");
 const { homePage } = require("../fixtures/home-page");
-const { mergeSettings } = require("../../main/src/electron/features/settings/settings-defaults");
+const { mergeSettings } = require("../../main/dist/electron/features/settings/settings-defaults");
 
 function native() {
     const keys = new Map();

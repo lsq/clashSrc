@@ -61,7 +61,7 @@ async function createTarGz(directory, output, { prefix = "", installed = false, 
 
 async function createDeb({ packagePath, target, version, output, staging, applicationId }) {
     const arch = target === "linux-x64" ? "amd64" : target === "linux-arm64" ? "arm64" : null;
-    if (!arch || !/^\d+\.\d+\.\d+\.\d+$/.test(version)) throw new Error("Invalid Debian package target/version");
+    if (!arch || !/^\d+\.\d+\.\d+$/.test(version)) throw new Error("Invalid Debian package target/version");
     if (typeof applicationId !== "string" || !/^[A-Za-z][A-Za-z0-9.-]+$/.test(applicationId)) throw new Error("Invalid desktop application identity");
     const control = path.join(staging, "control");
     const data = path.join(staging, "data");

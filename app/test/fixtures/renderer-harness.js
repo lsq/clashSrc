@@ -2,10 +2,10 @@
 
 const path = require("node:path");
 
-const rendererPath = path.resolve(__dirname, "../../main/src/electron/renderer.js");
+const rendererPath = path.resolve(__dirname, "../../main/dist/electron/renderer.js");
 
 function rendererLanguage() {
-    return require("../../main/src/electron/core/i18n/language").createTranslator;
+    return require("../../main/dist/electron/core/i18n/language").createTranslator;
 }
 
 module.exports = { rendererPath, rendererLanguage };

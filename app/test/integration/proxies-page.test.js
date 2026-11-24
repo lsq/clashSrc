@@ -6,13 +6,13 @@ const fs = require("node:fs");
 const path = require("node:path");
 const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createProxiesPage } = require("../../main/src/electron/features/proxies/page");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createProxiesPage } = require("../../main/dist/electron/features/proxies/page");
 const { rendererPath } = require("../fixtures/renderer-harness");
 const { assertRendererComposition } = require("../fixtures/assert-renderer-composition");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { createProvidersPage } = require("../../main/src/electron/features/providers/page");
-const { createAppMutations } = require("../../main/src/electron/features/application-state/mutations");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { createProvidersPage } = require("../../main/dist/electron/features/providers/page");
+const { createAppMutations } = require("../../main/dist/electron/features/application-state/mutations");
 
 const EmptyComponent = { render: h => h("span") };
 const labels = new Proxy({}, { get: (_target, key) => () => key === "timeout" ? "Timeout" : String(key) });

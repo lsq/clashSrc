@@ -2,7 +2,7 @@
 
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createIntervalScheduler } = require("../../main/src/electron/core/runtime/interval-scheduler");
+const { createIntervalScheduler } = require("../../main/dist/electron/core/runtime/interval-scheduler");
 
 test("interval scheduler pauses, resumes and permanently stops tasks", () => {
     let active = true, nextId = 0;

@@ -3,9 +3,9 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const Vue = require("../../main/node_modules/vue");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createTapViews } = require("../../main/src/electron/features/clash-core/tap-management-view");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createTapViews } = require("../../main/dist/electron/features/clash-core/tap-management-view");
 const Empty = { render: h => h("span") };
 const nodes = node => !node ? [] : [node, ...(node.children || node.componentOptions?.children || []).flatMap(nodes)];
 

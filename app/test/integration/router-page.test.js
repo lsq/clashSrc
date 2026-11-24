@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const Vue = require("../../main/node_modules/vue");
 const Vuex = require("../../main/node_modules/vuex");
-const { defineComponent } = require("../../main/src/electron/features/renderer-ui/component");
-const { createRouterPage } = require("../../main/src/electron/features/router/page");
+const { defineComponent } = require("../../main/dist/electron/features/renderer-ui/component");
+const { createRouterPage } = require("../../main/dist/electron/features/router/page");
 const { assertRendererComposition } = require("../fixtures/assert-renderer-composition");
 
 Vue.use(Vuex);

@@ -17,7 +17,7 @@ const compositionFiles = [
 ];
 
 function readRendererCompositionSource(root) {
-    const electronRoot = path.join(root, "app/main/src/electron");
+    const electronRoot = path.join(root, "app/main/dist/electron");
     return compositionFiles
         .map(file => fs.readFileSync(path.join(electronRoot, file), "utf8"))
         .join("\n");

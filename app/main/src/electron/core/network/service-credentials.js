@@ -12,9 +12,9 @@ function readServiceCredentials({ fs, path, home }) {
     return credentials;
 }
 
-function createServiceCredentials({ fs, path, crypto, home, protectFile }) {
+function createServiceCredentials({ fs, path, crypto, home, protectFile, extra }) {
     const dataDirectory = fs.realpathSync(home);
-    const credentials = { dataDirectory, token: crypto.randomBytes(32).toString("hex") };
+    const credentials = { dataDirectory, token: crypto.randomBytes(32).toString("hex"), ...extra };
     const file = path.join(dataDirectory, CREDENTIAL_FILE);
     writeAtomic({ fs, path, file, content: JSON.stringify(credentials) });
     protectFile?.(file);

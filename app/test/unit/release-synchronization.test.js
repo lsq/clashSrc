@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const release = require("../../main/src/electron/core/release/release-info");
+const release = require("../../main/dist/electron/core/release/release-info");
 const { synchronizeRelease } = require("../../../scripts/build/sync-release");
 
 function fixture(t) {

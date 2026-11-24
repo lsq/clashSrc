@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../..");
-const file = path.join(root, "app/main/src/electron/renderer.js");
+const file = path.join(root, "app/main/dist/electron/renderer.js");
 const source = fs.readFileSync(file, "utf8");
 const startMarker = "            70538: (e, t, i) => {";
 const endMarker = "            63878: (e, t, i) => {";

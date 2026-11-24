@@ -4,9 +4,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const Vuex = require("../../main/node_modules/vuex");
 const axios = require("../../main/node_modules/axios");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
-const { createFeedbackPage } = require("../../main/src/electron/features/feedback/page");
-const { createSharedComponents } = require("../../main/src/electron/entry/renderer/create-shared-components");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
+const { createFeedbackPage } = require("../../main/dist/electron/features/feedback/page");
+const { createSharedComponents } = require("../../main/dist/electron/entry/renderer/create-shared-components");
 
 function rendererComponents({ locale = 0, monaco, overrides = {}, bindings = {} } = {}) {
     const runtimeMonaco = monaco || {
@@ -49,7 +49,7 @@ function rendererComponents({ locale = 0, monaco, overrides = {}, bindings = {} 
         axios: overrides.axios || axios, fs, path, editorLanguagesOverride
     });
     const feedbackPage = createFeedbackPage({
-        defineComponent: require("../../main/src/electron/features/renderer-ui/component").defineComponent,
+        defineComponent: require("../../main/dist/electron/features/renderer-ui/component").defineComponent,
         escCaptureComponent: shared.EscCapture, getLanguage, modifyState, cache,
         keys: preferenceKeys, httpClient: overrides.axios || axios, shell: electron.shell
     });

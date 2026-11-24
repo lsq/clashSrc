@@ -5,6 +5,7 @@ const { config: releaseConfig } = require("../../core/release/release-info");
 const { createCertificateExceptionMatcher } = require("../../core/network/certificate-exceptions");
 const { createCertificateRequestOptions } = require("../../core/network/certificate-request-options");
 const { resolveDownloadPolicy } = require("../../core/network/profile-download-policy");
+const { fileURLToPath } = require("url")
 
 const SET = Symbol("set");
 const INSERT = Symbol("insert");
@@ -267,16 +268,27 @@ function createProfileParser(dependencies) {
     async function downloadProfile({ url, cancelToken = null, headersString = "" }) {
         const language = getLanguage();
         try {
-            const throughProxy = store.state.app.settings.updateProfileThroughClashProxy;
-            const response = throughProxy
-                ? await proxiedRequest(url, { cancelToken }, parseHeaderString(headersString))
-                : await directRequest(url, { cancelToken }, parseHeaderString(headersString));
-            const body = response.data;
-            const status = response.status;
-            const headers = response.headers || {};
+            let body;
+            let status = 200;
+            let headers = {};
+            if (new URL(url).protocol === "file:") {
+                body = fs.readFileSync(fileURLToPath(url), "utf-8");
+            } else {
+                const throughProxy = store.state.app.settings.updateProfileThroughClashProxy;
+                const response = throughProxy
+                    ? await proxiedRequest(url, { cancelToken }, parseHeaderString(headersString))
+                    : await directRequest(url, { cancelToken }, parseHeaderString(headersString));
+                body = response.data;
+                status = response.status;
+                headers = response.headers || {};
+            }
             let name = "config.yaml";
             const time = dependencies.createProfileTime ? dependencies.createProfileTime() : `${Date.now()}.yml`;
-            try { name = path.basename(url); } catch (error) { console.error(error.stack); }
+            try {
+                name = new URL(url).protocol === "file:"
+                ? path.basename(fileURLToPath(url))
+                : path.basename(url);
+            } catch (error) { console.error(error.stack); }
             if (/([^/]*?)(?:$|\?)/.test(url)) name = decodeURIComponent(RegExp.$1.trim());
             const interval = parseInt(headers["profile-update-interval"] || 0) || 0;
             const homeWeb = headers["profile-web-page-url"] || "";

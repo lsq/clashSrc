@@ -13,7 +13,7 @@ continues to own code-scanning uploads; GitHub rejects advanced-configuration
 uploads while default setup is enabled. This supplemental workflow does not
 change that repository setting.
 
-`.github/codeql-config.yml` includes `app/main/src/electron`: these files are
+`.github/codeql-config.yml` includes `app/main/dist/electron`: these files are
 maintained executable source, despite the `dist` directory name. Build products
 and vendored dependencies are excluded. Go is built explicitly from
 `scripts/native/linux-service-helper`; no service is installed during analysis.

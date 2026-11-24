@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
-const { registerNavigationIpc } = require("../../main/src/electron/features/navigation/register-navigation-ipc");
-const { registerPublicContentIpc } = require("../../main/src/electron/features/network/register-public-content-ipc");
+const { registerNavigationIpc } = require("../../main/dist/electron/features/navigation/register-navigation-ipc");
+const { registerPublicContentIpc } = require("../../main/dist/electron/features/network/register-public-content-ipc");
 
 test("native navigation authorizes the dashboard frame and rejects executable URLs and arbitrary folders", async () => {
     const handlers = {}, calls = [], owner = { mainFrame: {} };

@@ -6,7 +6,7 @@ const net = require("node:net");
 const dgram = require("node:dgram");
 const { EventEmitter } = require("node:events");
 const { randomInt } = require("node:crypto");
-const { isMixedPortAvailable, mixedPortHost } = require("../../main/src/electron/core/network/mixed-port-availability");
+const { isMixedPortAvailable, mixedPortHost } = require("../../main/dist/electron/core/network/mixed-port-availability");
 
 const available = (port, config = {}) => isMixedPortAvailable({ net, dgram, port, config });
 async function freePort() {

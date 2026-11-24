@@ -3,8 +3,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const net = require("node:net");
-const { registerNetworkInfoIpc } = require("../../main/src/electron/features/network/register-network-info-ipc");
-const { createNetworkInfoClient } = require("../../main/src/electron/core/native/network-info-client");
+const { registerNetworkInfoIpc } = require("../../main/dist/electron/features/network/register-network-info-ipc");
+const { createNetworkInfoClient } = require("../../main/dist/electron/core/native/network-info-client");
 
 function harness() {
     let handler;

@@ -5,13 +5,13 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../../..");
-const rendererPath = path.join(root, "app/main/src/electron/renderer.js");
+const rendererPath = path.join(root, "app/main/dist/electron/renderer.js");
 const { readRendererCompositionSource } = require("../fixtures/renderer-composition-source");
 const { mergeSettings } = require(
-    path.join(root, "app/main/src/electron/features/settings/settings-defaults")
+    path.join(root, "app/main/dist/electron/features/settings/settings-defaults")
 );
 const { loadSettingsFromDisk } = require(
-    path.join(root, "app/main/src/electron/features/settings/load-settings")
+    path.join(root, "app/main/dist/electron/features/settings/load-settings")
 );
 
 const defaults = mergeSettings({});

@@ -2,8 +2,8 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { supportsWindowPin } = require("../../main/src/electron/features/window/pin-policy");
-const { registerWindowIpc } = require("../../main/src/electron/features/window/register-window-ipc");
+const { supportsWindowPin } = require("../../main/dist/electron/features/window/pin-policy");
+const { registerWindowIpc } = require("../../main/dist/electron/features/window/register-window-ipc");
 const { homePage } = require("../fixtures/home-page");
 
 test("pin capability distinguishes native Wayland from X11 and forced Xwayland", () => {

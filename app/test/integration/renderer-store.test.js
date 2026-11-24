@@ -8,7 +8,7 @@ const path = require("node:path");
 const yaml = require("../../main/node_modules/yaml");
 const cloneDeep = require("../../main/node_modules/lodash/cloneDeep");
 const { buildStore } = require("../fixtures/renderer-store");
-const { createGlobalMixin } = require("../../main/src/electron/entry/renderer/global-mixin");
+const { createGlobalMixin } = require("../../main/dist/electron/entry/renderer/global-mixin");
 const Vuex = require("../../main/node_modules/vuex");
 
 function temporary(t) {

@@ -1,7 +1,7 @@
 "use strict";
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { createLatencyPolicy } = require("../../main/src/electron/features/proxies/latency-policy");
+const { createLatencyPolicy } = require("../../main/dist/electron/features/proxies/latency-policy");
 
 test("Mihomo mean mode uses two samples within one budget; default and legacy mean use one API call", async () => {
     let time = 1000;

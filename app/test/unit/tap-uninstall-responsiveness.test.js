@@ -5,13 +5,13 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const net = require("node:net");
 const childProcess = require("node:child_process");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
-const { createProfileNetworkEffects } = require("../../main/src/electron/features/network/profile-network-effects");
-const { registerNativeAdminIpc } = require("../../main/src/electron/entry/main/register-native-admin-ipc");
-const { registerNetworkInfoIpc } = require("../../main/src/electron/features/network/register-network-info-ipc");
-const { execFileAsync } = require("../../main/src/electron/core/process/commands");
-const { createGeneralPageWorkflow } = require("../../main/src/electron/features/clash-core/general-page-workflow");
-const { createTranslator } = require("../../main/src/electron/core/i18n/language");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
+const { createProfileNetworkEffects } = require("../../main/dist/electron/features/network/profile-network-effects");
+const { registerNativeAdminIpc } = require("../../main/dist/electron/entry/main/register-native-admin-ipc");
+const { registerNetworkInfoIpc } = require("../../main/dist/electron/features/network/register-network-info-ipc");
+const { execFileAsync } = require("../../main/dist/electron/core/process/commands");
+const { createGeneralPageWorkflow } = require("../../main/dist/electron/features/clash-core/general-page-workflow");
+const { createTranslator } = require("../../main/dist/electron/core/i18n/language");
 const { homePage } = require("../fixtures/home-page");
 
 function deferred() {

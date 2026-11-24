@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const { EventEmitter } = require("node:events");
 const { spawn } = require("node:child_process");
-const { createTunRuntime } = require("../../main/src/electron/features/tun/tun-runtime");
-const { tapRouteState } = require("../../main/src/electron/features/tun/tap-route-state");
+const { createTunRuntime } = require("../../main/dist/electron/features/tun/tun-runtime");
+const { tapRouteState } = require("../../main/dist/electron/features/tun/tap-route-state");
 
 const addresses = { ip: "10.0.0.1", subnet: "255.255.255.0", gateway: "10.0.0.0" };
 const connected = "10.0.0.0 255.255.255.0 在链路上 10.0.0.1 257";
