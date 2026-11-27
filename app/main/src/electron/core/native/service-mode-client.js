@@ -7,9 +7,9 @@ function createServiceModeClient({ service }) {
         status: SERVICE_STATUS,
         statusService: () => service.status(),
         needUpdate: () => service.needUpdate(),
-        installService: method => service.install(method),
+        installService: (method, options) => service.install(method, options), // 透传useSystemMihomo参数
         uninstallService: () => service.uninstall(),
-        updateService: () => service.update()
+        updateService: (options) => service.update(options)
     });
 }
 

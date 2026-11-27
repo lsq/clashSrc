@@ -45,5 +45,8 @@
   },
   "overrides": {
     "dompurify": "3.4.17"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

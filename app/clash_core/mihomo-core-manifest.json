@@ -19,11 +19,11 @@
     },
     {
       "target": "linux-x64",
-      "version": "1.19.33",
-      "asset": "mihomo-linux-amd64-v3-v1.19.33.gz",
+      "version": "1.19.34",
+      "asset": "mihomo-linux-amd64-v3-v1.19.34.gz",
       "output": "clash_core/linux-x64/static/files/linux/x64/mihomo-linux-amd64",
-      "source": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.33/mihomo-linux-amd64-v3-v1.19.33.gz",
-      "sha256": "817f50b3ac6a8b1c4360c5cf2961906057f3a883d970ebbcb0028a01632b620f"
+      "source": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.34/mihomo-linux-amd64-v3-v1.19.34.gz",
+      "sha256": "2c34fbfe2c39f61c94c51bad32bccf6cf534282939ac9cd4c742e5b18aeac749"
     },
     {
       "target": "linux-arm64",

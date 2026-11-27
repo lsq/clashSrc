@@ -607,7 +607,7 @@ function createGeneralPageWorkflow({
     function beforeRouteEnter(_to, _from, next) {
         next(async vm => {
             vm.version = `v${await electron.ipcRenderer.invoke("app", "getVersion")}`;
-            vm.serviceNeedUpdate = this.settings.skipServiceUpdateCheck ? false : await service.needUpdate();
+            vm.serviceNeedUpdate = (this.settings.skipServiceUpdateCheck || this.settings.useSystemMihomo) ? false : await service.needUpdate();
             vm.setupComponent();
             schedule(vm.setupSwitches, 1);
         });

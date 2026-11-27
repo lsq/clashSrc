@@ -16,7 +16,9 @@ async function main() {
     const result = await esbuild.build({
         entryPoints: [path.join(root, "app/main/dist/electron/renderer.js")],
         bundle: true, platform: "browser", target: ["chrome120"], format: "iife",
-        minify: true, write: false, metafile: true,
+        minify: true, // 调试时关掉压缩，可选
+        // sourcemap: "inline",        // 关键：map 以 data URL 附在代码末尾, 完成后注释掉
+        write: false, metafile: true,
         define: { "process.env": "{}", global: "globalThis" },
         plugins: [{ name: "isolated-electron-host", setup(build) {
             build.onResolve({ filter: /^electron$/ }, () => ({ path: "electron", namespace: "isolated-host" }));

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "displayVersion": "Opt-1",
+  "displayVersion": "v1.0.0",
   "electronVersion": "45.4.1",
   "productName": "Clash for Windows",
   "applicationId": "com.lbyczf.clashwin",

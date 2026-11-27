@@ -42,16 +42,20 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target`;
 
-const LINUX_OPENRC_SERVICE = `
-#!/sbin/openrc-run
+const LINUX_OPENRC_SERVICE = `#!/sbin/openrc-run
 name="clash-core-service"
 description="Clash core service created by Clash for Windows"
 command="helperPath"
 command_background=true
-pidfile="/run/\${RC_SVCNAME}.pid"
+pidfile="/run/\\\${RC_SVCNAME}.pid"
+clashLog="\\\${clashLog:-/var/log/\\\${RC_SVCNAME}.log}"
+output_log="\\\${clashLog}"
+error_log="\\\${clashLog}"
+
 depend() {
+    use logger
     need net
-    after firewall
+    after net firewall
 }`;
 
 function createServiceModeManager(dependencies) {
@@ -189,9 +193,9 @@ function createServiceModeManager(dependencies) {
         // https://deepwiki.com/search/76c51094-70b0-4b3f-bb5a-ba915c0fc5db
         const openrcScript = "/etc/init.d/clash-core-service";
         const unit = "/usr/lib/systemd/system/clash-core-service.service";
+        const hasSystemd = fs.existsSync("/run/systemd/system") && fs.existsSync("/usr/lib/systemd/system");
+        const hasOpenRC = fs.existsSync("/sbin/openrc-run") || fs.existsSync("/etc/init.d");
         const installService = async (_method, options) => {
-            const hasSystemd = fs.existsSync("/run/systemd/system") || fs.existsSync("/usr/lib/systemd/system");
-            const hasOpenRC = fs.existsSync("/sbin/openrc-run") || fs.existsSync("/etc/init.d");
             if (hasSystemd) {
             const command = posixInstallCommand(unit, LINUX_SERVICE.replace("helperPath", installedBinary()), options);
             await elevated(`systemctl stop clash-core-service 2>/dev/null || true; ${command}; systemctl daemon-reload; systemctl enable clash-core-service; systemctl start clash-core-service`);

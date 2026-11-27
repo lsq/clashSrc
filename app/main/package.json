@@ -1,6 +1,6 @@
 {
     "name": "clash_win",
-    "version": "0.20.39.5",
+    "version": "1.0.0",
     "author": "Fndroid",
     "description": "A Windows client based on Clash",
     "license": "MIT",

@@ -99,7 +99,9 @@ jobs:
       - name: Build release (win-x64 + linux-x64)
         env:
           CFW_7ZIP: C:\Program Files\7-Zip\7z.exe
-        run: node CFW/BuildRelease/build-release.js --targets=win-x64,linux-x64 --skip-tests
+        run: |
+          npm run build:linux-service-helper
+          node CFW/BuildRelease/build-release.js --targets=win-x64,linux-x64 --skip-tests
 
       - name: Locate artifacts
         id: out
